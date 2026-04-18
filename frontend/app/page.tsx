@@ -1,0 +1,57 @@
+'use client';
+
+import React, { useState } from 'react';
+import { useRouter } from 'next/navigation';
+import AuthLayout from '../components/auth/AuthLayout';
+import LoginForm from '../components/auth/LoginForm';
+import SignUpForm from '../components/auth/SignUpForm';
+import { AnimatePresence, motion } from 'framer-motion';
+
+export default function Home() {
+  const [isLogin, setIsLogin] = useState(true);
+  const router = useRouter();
+
+  const handleLogin = () => {
+    // For now, just redirect to onboarding
+    router.push('/onboarding');
+  };
+
+  const handleSignUp = () => {
+    // For now, just redirect to onboarding
+    router.push('/onboarding');
+  };
+
+  return (
+    <AuthLayout>
+      <AnimatePresence mode="wait">
+        {isLogin ? (
+          <motion.div
+            key="login"
+            initial={{ opacity: 0, x: -20 }}
+            animate={{ opacity: 1, x: 0 }}
+            exit={{ opacity: 0, x: 20 }}
+            transition={{ duration: 0.3 }}
+          >
+            <LoginForm 
+              onSwitchToSignUp={() => setIsLogin(false)} 
+              onLogin={handleLogin}
+            />
+          </motion.div>
+        ) : (
+          <motion.div
+            key="signup"
+            initial={{ opacity: 0, x: 20 }}
+            animate={{ opacity: 1, x: 0 }}
+            exit={{ opacity: 0, x: -20 }}
+            transition={{ duration: 0.3 }}
+          >
+            <SignUpForm 
+              onSwitchToLogin={() => setIsLogin(true)} 
+              onSignUp={handleSignUp}
+            />
+          </motion.div>
+        )}
+      </AnimatePresence>
+    </AuthLayout>
+  );
+}
