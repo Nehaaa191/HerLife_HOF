@@ -1,0 +1,446 @@
+.container {
+  min-height: 100vh;
+  background-color: var(--background);
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+}
+
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem 2rem;
+  background-color: var(--card);
+  border-bottom: 1px solid var(--border);
+  box-shadow: 0 2px 10px rgba(0,0,0,0.02);
+}
+
+.logo {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 1.5rem;
+  font-weight: 600;
+  color: var(--primary);
+}
+
+.navLinks {
+  display: flex;
+  gap: 1.5rem;
+  align-items: center;
+}
+
+.navItem {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 1rem;
+  font-weight: 500;
+  color: var(--foreground-muted);
+  cursor: pointer;
+  padding: 0.5rem 1rem;
+  border-radius: 2rem;
+  transition: all 0.2s ease;
+  background: transparent;
+  border: none;
+  font-family: inherit;
+}
+
+.navItem:hover {
+  color: var(--primary);
+}
+
+.navItemActive {
+  background-color: var(--primary);
+  color: white;
+}
+
+.content {
+  flex: 1;
+  padding: 2rem;
+  max-width: 1200px;
+  margin: 0 auto;
+  width: 100%;
+}
+
+.card {
+  background-color: var(--card);
+  border: 1px solid var(--border);
+  border-radius: 1.5rem;
+  padding: 2.5rem;
+  margin-bottom: 2rem;
+}
+
+/* Header Card */
+.headerCard {
+  background-color: var(--card);
+  border: 1px solid var(--border);
+  border-radius: 1.5rem;
+  padding: 2.5rem;
+  margin-bottom: 2rem;
+}
+
+.headerTitle {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  font-size: 1.5rem;
+  font-weight: 600;
+  color: var(--primary);
+  margin-bottom: 0.5rem;
+}
+
+.headerSubtitle {
+  font-size: 1.1rem;
+  color: var(--foreground-muted);
+}
+
+/* Water Tracker */
+.waterHeader {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  font-size: 1.25rem;
+  font-weight: 600;
+  color: var(--foreground);
+  margin-bottom: 1.5rem;
+}
+
+.waterIcon {
+  background-color: var(--primary);
+  color: white;
+  width: 40px;
+  height: 40px;
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.waterBanner {
+  background-color: #FFECCC;
+  border-radius: 1rem;
+  padding: 2rem;
+  text-align: center;
+  margin-bottom: 1.5rem;
+}
+
+.waterCount {
+  font-size: 2.5rem;
+  font-weight: 700;
+  color: var(--primary);
+  margin-bottom: 0.5rem;
+}
+
+.waterText {
+  font-size: 1rem;
+  color: var(--foreground);
+}
+
+.progressBarContainer {
+  height: 16px;
+  background-color: var(--chart-4);
+  border-radius: 1rem;
+  overflow: hidden;
+  margin-bottom: 1.5rem;
+}
+
+.progressBarFill {
+  height: 100%;
+  background-color: var(--primary);
+  transition: width 0.3s ease;
+}
+
+.waterControls {
+  display: flex;
+  gap: 1rem;
+  margin-bottom: 2rem;
+}
+
+.addBtn {
+  flex: 1;
+  background-color: var(--primary);
+  color: white;
+  border: none;
+  padding: 1rem;
+  border-radius: 2rem;
+  font-size: 1.1rem;
+  font-weight: 600;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  transition: opacity 0.2s;
+}
+
+.addBtn:hover {
+  opacity: 0.9;
+}
+
+.removeBtn {
+  background-color: transparent;
+  color: var(--primary);
+  border: 2px solid var(--primary);
+  padding: 1rem 2rem;
+  border-radius: 2rem;
+  font-size: 1.1rem;
+  font-weight: 600;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  transition: background-color 0.2s;
+}
+
+.removeBtn:hover {
+  background-color: var(--chart-4);
+}
+
+.waterDropsGrid {
+  display: grid;
+  grid-template-columns: repeat(8, 1fr);
+  gap: 0.5rem;
+}
+
+.dropBox {
+  aspect-ratio: 1;
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.3s ease;
+}
+
+.dropBoxActive {
+  background-color: var(--primary);
+  color: white;
+}
+
+.dropBoxInactive {
+  background-color: white;
+  border: 1px solid var(--border);
+  color: #CBD5E1;
+}
+
+/* Two Column Grid */
+.twoColGrid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 2rem;
+  margin-bottom: 2rem;
+}
+
+.sectionTitle {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  font-size: 1.25rem;
+  font-weight: 600;
+  color: var(--foreground);
+  margin-bottom: 1.5rem;
+}
+
+.sectionIcon {
+  background-color: var(--primary);
+  color: white;
+  width: 40px;
+  height: 40px;
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.noticeBox {
+  background-color: #FFECCC;
+  border-radius: 1rem;
+  padding: 1.25rem 1.5rem;
+  margin-bottom: 1.5rem;
+  display: flex;
+  gap: 1rem;
+  align-items: flex-start;
+}
+
+.noticeEmoji {
+  font-size: 1.5rem;
+}
+
+.noticeTitle {
+  font-weight: 600;
+  color: var(--foreground);
+  margin-bottom: 0.25rem;
+}
+
+.noticeDesc {
+  font-size: 0.9rem;
+  color: var(--foreground-muted);
+}
+
+/* Exercise Cards */
+.exerciseCard {
+  background-color: var(--card);
+  border: 1px solid var(--border);
+  border-radius: 1rem;
+  padding: 1.5rem;
+  margin-bottom: 1rem;
+  display: flex;
+  gap: 1rem;
+  align-items: center;
+}
+
+.exerciseEmoji {
+  font-size: 2rem;
+  background-color: #FFECCC;
+  width: 48px;
+  height: 48px;
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.exerciseContent {
+  flex: 1;
+}
+
+.exerciseHeader {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  margin-bottom: 0.25rem;
+}
+
+.exerciseTitle {
+  font-weight: 600;
+  font-size: 1.05rem;
+  color: var(--foreground);
+}
+
+.badge {
+  background-color: var(--primary);
+  color: white;
+  font-size: 0.7rem;
+  padding: 0.15rem 0.5rem;
+  border-radius: 1rem;
+  font-weight: 600;
+  text-transform: uppercase;
+}
+
+.exerciseDesc {
+  font-size: 0.9rem;
+  color: var(--foreground-muted);
+}
+
+/* Nutrition Cards */
+.nutritionCard {
+  background-color: var(--card);
+  border: 1px solid var(--border);
+  border-radius: 1rem;
+  padding: 1.5rem;
+  margin-bottom: 1rem;
+  display: flex;
+  gap: 1rem;
+  align-items: flex-start;
+}
+
+.nutritionEmoji {
+  font-size: 2rem;
+}
+
+.nutritionContent {
+  flex: 1;
+}
+
+.nutritionTitle {
+  font-weight: 600;
+  font-size: 1.1rem;
+  color: var(--foreground);
+  margin-bottom: 0.75rem;
+}
+
+.foodList {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0.5rem;
+  margin-bottom: 1rem;
+  list-style: none;
+  padding: 0;
+}
+
+.foodList li {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 0.9rem;
+  color: var(--foreground-muted);
+}
+
+.foodDot {
+  width: 6px;
+  height: 6px;
+  background-color: var(--primary);
+  border-radius: 50%;
+}
+
+.nutritionDescBox {
+  background-color: var(--background);
+  padding: 0.75rem 1rem;
+  border-radius: 0.75rem;
+  font-size: 0.85rem;
+  color: var(--foreground-muted);
+}
+
+/* Self Care */
+.selfCareGrid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1.5rem;
+}
+
+.selfCareCard {
+  background-color: #FFECCC;
+  border-radius: 1rem;
+  padding: 2rem;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1rem;
+}
+
+.selfCareEmoji {
+  font-size: 2.5rem;
+}
+
+.selfCareTitle {
+  font-weight: 600;
+  font-size: 1.1rem;
+  color: var(--foreground);
+}
+
+.selfCareDesc {
+  font-size: 0.95rem;
+  color: var(--foreground-muted);
+}
+
+@media (max-width: 900px) {
+  .twoColGrid {
+    grid-template-columns: 1fr;
+  }
+  .selfCareGrid {
+    grid-template-columns: 1fr;
+  }
+  .waterDropsGrid {
+    grid-template-columns: repeat(4, 1fr);
+  }
+}
+
+@media (max-width: 768px) {
+  .navLinks {
+    display: none;
+  }
+}

@@ -1,0 +1,379 @@
+.container {
+  min-height: 100vh;
+  background-color: var(--background);
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+}
+
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem 2rem;
+  background-color: var(--card);
+  border-bottom: 1px solid var(--border);
+  box-shadow: 0 2px 10px rgba(0,0,0,0.02);
+}
+
+.logo {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 1.5rem;
+  font-weight: 600;
+  color: var(--primary);
+}
+
+.navLinks {
+  display: flex;
+  gap: 1.5rem;
+  align-items: center;
+}
+
+.navItem {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 1rem;
+  font-weight: 500;
+  color: var(--foreground-muted);
+  cursor: pointer;
+  padding: 0.5rem 1rem;
+  border-radius: 2rem;
+  transition: all 0.2s ease;
+  background: transparent;
+  border: none;
+  font-family: inherit;
+}
+
+.navItem:hover {
+  color: var(--primary);
+}
+
+.navItemActive {
+  background-color: var(--accent);
+  color: var(--primary);
+}
+
+.content {
+  flex: 1;
+  padding: 2rem;
+  max-width: 1200px;
+  margin: 0 auto;
+  width: 100%;
+}
+
+.card {
+  background-color: var(--card);
+  border: 1px solid var(--border);
+  border-radius: 1.5rem;
+  padding: 2.5rem;
+  margin-bottom: 2rem;
+}
+
+/* Hero Card */
+.heroCard {
+  background-color: var(--primary);
+  color: white;
+  border: none;
+  box-shadow: 0 10px 30px rgba(209, 77, 114, 0.2);
+}
+
+.heroTitle {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  font-size: 1.8rem;
+  font-weight: 600;
+  margin-bottom: 0.5rem;
+}
+
+.heroSubtitle {
+  font-size: 1.1rem;
+  opacity: 0.9;
+  margin-bottom: 2rem;
+}
+
+.heroStatsGrid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1.5rem;
+}
+
+.heroStatBox {
+  background: rgba(255, 255, 255, 0.15);
+  backdrop-filter: blur(10px);
+  border-radius: 1rem;
+  padding: 1.5rem;
+}
+
+.statLabel {
+  font-size: 0.95rem;
+  opacity: 0.9;
+  margin-bottom: 0.5rem;
+}
+
+.statValue {
+  font-size: 1.8rem;
+  font-weight: 600;
+}
+
+/* Section Header */
+.sectionHeader {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  font-size: 1.25rem;
+  font-weight: 600;
+  color: var(--primary);
+  margin-bottom: 1.5rem;
+}
+
+/* Period Tracker */
+.trackerGrid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 2rem;
+  margin-bottom: 1.5rem;
+}
+
+.trackerBox {
+  border-radius: 1rem;
+  padding: 2rem;
+}
+
+.trackerBoxOrange {
+  background-color: #FFECCC;
+}
+
+.trackerBoxWhite {
+  background-color: var(--card);
+  border: 1px solid var(--border);
+}
+
+.trackerLabel {
+  font-size: 0.95rem;
+  color: var(--foreground-muted);
+  margin-bottom: 0.5rem;
+}
+
+.trackerValue {
+  font-size: 1.8rem;
+  font-weight: 600;
+  color: var(--primary);
+  margin-bottom: 1.5rem;
+}
+
+.trackerSubItem {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 0.95rem;
+  color: var(--foreground-muted);
+}
+
+.trackerDot {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background-color: var(--primary);
+}
+
+.trackerIconBox {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 24px;
+  height: 24px;
+  background-color: var(--chart-4);
+  color: var(--primary);
+  border-radius: 4px;
+}
+
+.trackerNote {
+  background-color: #FFF9C4;
+  border-radius: 0.75rem;
+  padding: 1rem 1.5rem;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 0.95rem;
+  color: #F57F17;
+}
+
+/* Quick Links Grid */
+.quickLinksGrid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 1.5rem;
+  margin-bottom: 2rem;
+}
+
+.quickLinkCard {
+  background-color: var(--card);
+  border: 1px solid var(--border);
+  border-radius: 1rem;
+  padding: 1.5rem;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  cursor: pointer;
+  text-align: left;
+}
+
+.quickLinkCard:hover {
+  transform: translateY(-5px);
+  box-shadow: var(--shadow-hover);
+}
+
+.quickLinkIcon {
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  background-color: var(--chart-4);
+  color: var(--primary);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 1rem;
+}
+
+.quickLinkTitle {
+  font-size: 1.1rem;
+  font-weight: 600;
+  color: var(--foreground);
+  margin-bottom: 0.5rem;
+}
+
+.quickLinkDesc {
+  font-size: 0.9rem;
+  color: var(--foreground-muted);
+  line-height: 1.4;
+}
+
+/* Lists */
+.listContainer {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.listItem {
+  background-color: #FFECCC;
+  border-radius: 2rem;
+  padding: 1.5rem 2rem;
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.listItemIcon {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  background-color: var(--primary);
+  color: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.listItemDot {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background-color: var(--primary);
+  flex-shrink: 0;
+}
+
+.listItemContent {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+}
+
+.listItemTitle {
+  font-weight: 600;
+  color: var(--foreground);
+}
+
+.listItemDesc {
+  font-size: 0.95rem;
+  color: var(--foreground-muted);
+}
+
+/* Mood Log */
+.moodHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1.5rem;
+}
+
+.moodTitle {
+  font-size: 1.25rem;
+  font-weight: 600;
+  color: var(--foreground);
+}
+
+.logBtn {
+  background-color: var(--primary);
+  color: white;
+  border: none;
+  padding: 0.75rem 1.5rem;
+  border-radius: 2rem;
+  font-weight: 500;
+  cursor: pointer;
+  font-family: inherit;
+  transition: opacity 0.2s;
+}
+
+.logBtn:hover {
+  opacity: 0.9;
+}
+
+.moodGrid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 1rem;
+}
+
+.moodPill {
+  background-color: #FFECCC;
+  border: none;
+  border-radius: 2rem;
+  padding: 1rem;
+  font-size: 1rem;
+  color: var(--foreground);
+  cursor: pointer;
+  transition: all 0.2s;
+  font-family: inherit;
+}
+
+.moodPill:hover {
+  background-color: #FFDDAA;
+}
+
+@media (max-width: 900px) {
+  .heroStatsGrid, .trackerGrid {
+    grid-template-columns: 1fr;
+  }
+  .quickLinksGrid {
+    grid-template-columns: 1fr 1fr;
+  }
+  .moodGrid {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+@media (max-width: 768px) {
+  .navLinks {
+    display: none;
+  }
+  .quickLinksGrid {
+    grid-template-columns: 1fr;
+  }
+}
