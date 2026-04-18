@@ -1,0 +1,372 @@
+.container {
+  min-height: 100vh;
+  background-color: var(--background);
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+}
+
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem 2rem;
+  background-color: var(--card);
+  border-bottom: 1px solid var(--border);
+  box-shadow: 0 2px 10px rgba(0,0,0,0.02);
+}
+
+.logo {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 1.5rem;
+  font-weight: 600;
+  color: var(--primary);
+}
+
+.navLinks {
+  display: flex;
+  gap: 1.5rem;
+  align-items: center;
+}
+
+.navItem {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 1rem;
+  font-weight: 500;
+  color: var(--foreground-muted);
+  cursor: pointer;
+  padding: 0.5rem 1rem;
+  border-radius: 2rem;
+  transition: all 0.2s ease;
+  background: transparent;
+  border: none;
+  font-family: inherit;
+}
+
+.navItem:hover {
+  color: var(--primary);
+}
+
+.navItemActive {
+  background-color: var(--primary);
+  color: white;
+}
+
+.content {
+  flex: 1;
+  padding: 2rem;
+  max-width: 1200px;
+  margin: 0 auto;
+  width: 100%;
+}
+
+.card {
+  background-color: var(--card);
+  border: 1px solid var(--border);
+  border-radius: 1.5rem;
+  padding: 2.5rem;
+  margin-bottom: 2rem;
+}
+
+.sectionTitle {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  font-size: 1.25rem;
+  font-weight: 600;
+  color: var(--foreground);
+  margin-bottom: 1.5rem;
+}
+
+/* Hero Box */
+.heroBox {
+  background-color: var(--primary);
+  border-radius: 1.5rem;
+  padding: 2.5rem;
+  color: white;
+  margin-bottom: 2rem;
+}
+
+.heroTitle {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  font-size: 1.75rem;
+  font-weight: 600;
+  margin-bottom: 1rem;
+}
+
+.heroSubtitle {
+  font-size: 1.15rem;
+  line-height: 1.5;
+  opacity: 0.9;
+}
+
+/* Mood Grid */
+.moodGrid {
+  display: grid;
+  grid-template-columns: repeat(6, 1fr);
+  gap: 1rem;
+}
+
+.moodBtn {
+  background-color: #FFECCC;
+  border: none;
+  border-radius: 1rem;
+  padding: 1.5rem 1rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.75rem;
+  cursor: pointer;
+  transition: all 0.2s;
+  font-family: inherit;
+}
+
+.moodBtn:hover {
+  background-color: #FFDDAA;
+  transform: translateY(-2px);
+}
+
+.moodEmoji {
+  font-size: 2rem;
+}
+
+.moodLabel {
+  font-weight: 500;
+  color: var(--foreground);
+  font-size: 1rem;
+}
+
+/* Understanding Grid */
+.understandingGrid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1.5rem;
+  margin-bottom: 2rem;
+}
+
+.understandingCol {
+  background-color: #FFECCC;
+  border-radius: 1rem;
+  padding: 1.5rem;
+}
+
+.understandingTitle {
+  font-weight: 600;
+  font-size: 1.1rem;
+  color: var(--foreground);
+  margin-bottom: 0.5rem;
+}
+
+.understandingSubtitle {
+  font-size: 0.9rem;
+  color: var(--primary);
+  font-weight: 500;
+  margin-bottom: 0.5rem;
+}
+
+.understandingDesc {
+  font-size: 0.95rem;
+  color: var(--foreground-muted);
+  line-height: 1.5;
+}
+
+.importantBox {
+  background-color: #FFECCC;
+  border-radius: 1rem;
+  padding: 1.5rem;
+}
+
+.importantTitle {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-weight: 600;
+  font-size: 1.1rem;
+  color: var(--foreground);
+  margin-bottom: 1rem;
+}
+
+.bulletList {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.bulletList li {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.75rem;
+  font-size: 0.95rem;
+  color: var(--foreground-muted);
+  line-height: 1.4;
+}
+
+.bulletDot {
+  min-width: 6px;
+  height: 6px;
+  background-color: var(--primary);
+  border-radius: 50%;
+  margin-top: 0.4rem;
+}
+
+/* Symptom Checker */
+.symptomList {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.symptomRow {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  padding: 1.25rem 1.5rem;
+  border: 1px solid var(--border);
+  border-radius: 2rem;
+  cursor: pointer;
+  transition: all 0.2s;
+  background-color: var(--card);
+}
+
+.symptomRow:hover {
+  border-color: var(--primary);
+}
+
+.symptomRowActive {
+  border-color: var(--primary);
+  background-color: var(--chart-4);
+}
+
+.symptomText {
+  font-size: 1rem;
+  color: var(--foreground);
+  font-weight: 500;
+}
+
+/* Coping */
+.copingGrid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1.5rem;
+}
+
+.copingCard {
+  border: 1px solid var(--border);
+  border-radius: 1rem;
+  padding: 1.5rem;
+}
+
+.copingTitle {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  font-weight: 600;
+  font-size: 1.1rem;
+  color: var(--foreground);
+  margin-bottom: 1rem;
+}
+
+/* Crisis Resources */
+.crisisWarning {
+  background-color: #FEF2F2;
+  border: 1px solid #FECACA;
+  border-radius: 1rem;
+  padding: 1.5rem;
+  color: #DC2626;
+  font-weight: 500;
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  margin-bottom: 1.5rem;
+}
+
+.crisisGrid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1.5rem;
+}
+
+.crisisCard {
+  border: 1px solid var(--border);
+  border-radius: 1rem;
+  padding: 1.5rem;
+}
+
+.crisisTitle {
+  font-weight: 600;
+  font-size: 1.1rem;
+  color: var(--foreground);
+  margin-bottom: 0.5rem;
+}
+
+.crisisHighlight {
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: var(--primary);
+  margin-bottom: 0.5rem;
+}
+
+.crisisDesc {
+  font-size: 0.95rem;
+  color: var(--foreground-muted);
+}
+
+/* Amazing Box (You are not alone) */
+.aloneBox {
+  background-color: var(--primary);
+  border-radius: 1.5rem;
+  padding: 2.5rem;
+  color: white;
+}
+
+.aloneTitle {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  font-size: 1.5rem;
+  font-weight: 600;
+  margin-bottom: 1.5rem;
+}
+
+.aloneList {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.aloneItem {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  font-size: 1.05rem;
+}
+
+@media (max-width: 900px) {
+  .moodGrid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+  .understandingGrid {
+    grid-template-columns: 1fr;
+  }
+  .copingGrid {
+    grid-template-columns: 1fr;
+  }
+  .crisisGrid {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 768px) {
+  .navLinks {
+    display: none;
+  }
+}
