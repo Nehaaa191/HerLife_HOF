@@ -15,8 +15,7 @@ export type Question = {
 
 export const PHASES = [
   { label: 'Pre-Teens', value: 'preteen' },
-  { label: 'Teens', value: 'teen' },
-  { label: 'Adult', value: 'adult' },
+  { label: 'Young Women', value: 'young_women' },
   { label: 'Pregnant', value: 'pregnant' },
   { label: 'Postpartum', value: 'postpartum' },
   { label: 'Menopause', value: 'menopause' },
@@ -33,20 +32,15 @@ export const PHASE_FLOWS: Record<string, Question[]> = {
     { id: 'water_intake', text: 'Daily water intake?', type: 'select', options: [{label: '< 1 Liter', value: 'low'}, {label: '1-2 Liters', value: 'medium'}, {label: '2+ Liters', value: 'high'}] },
     { id: 'stress_anxiety', text: 'Do you feel stressed or anxious?', type: 'select', options: [{label: 'Rarely', value: 'rarely'}, {label: 'Sometimes', value: 'sometimes'}, {label: 'Often', value: 'often'}] }
   ],
-  teen: [
+  young_women: [
     { id: 'last_period', text: 'When was your last period?', type: 'date' },
-    { id: 'regular', text: 'Are cycles regular?', type: 'select', options: [{label: 'Yes', value: 'yes'}, {label: 'No', value: 'no'}, {label: 'Not sure', value: 'not_sure'}] },
+    { id: 'cycle_length', text: 'Average cycle length', type: 'slider', min: 21, max: 40, defaultValue: 28 },
+    { id: 'regularity', text: 'Cycle regularity', type: 'select', options: [{label: 'Regular', value: 'regular'}, {label: 'Irregular', value: 'irregular'}, {label: 'Not sure', value: 'not_sure'}] },
     { id: 'pain', text: 'Period pain?', type: 'select', options: [{label: 'Low', value: 'low'}, {label: 'Medium', value: 'medium'}, {label: 'High', value: 'high'}] },
+    { id: 'conditions', text: 'Health conditions', type: 'multi', options: [{label: 'Low sleep', value: 'low_sleep'}, {label: 'Insomnia', value: 'insomnia'}, {label: 'PCOD', value: 'pcod'}, {label: 'PCOS', value: 'pcos'}, {label: 'None', value: 'none'}] },
     { id: 'energy', text: 'Energy level?', type: 'select', options: [{label: 'Low', value: 'low'}, {label: 'Normal', value: 'normal'}, {label: 'High', value: 'high'}] },
     { id: 'stress_level', text: 'Stress level?', type: 'select', options: [{label: 'Low', value: 'low'}, {label: 'Moderate', value: 'moderate'}, {label: 'High', value: 'high'}] },
-    { id: 'physical_activity', text: 'Physical Activity?', type: 'select', options: [{label: 'Rare', value: 'rare'}, {label: 'Moderate', value: 'moderate'}, {label: 'Active', value: 'active'}] }
-  ],
-  adult: [
-    { id: 'last_period', text: 'Last period date', type: 'date' },
-    { id: 'cycle_length', text: 'Average cycle length', type: 'slider', min: 21, max: 40, defaultValue: 28 },
-    { id: 'regularity', text: 'Cycle regularity', type: 'select', options: [{label: 'Regular', value: 'regular'}, {label: 'Irregular', value: 'irregular'}] },
-    { id: 'conditions', text: 'Health conditions', type: 'multi', options: [{label: 'Low sleep', value: 'low_sleep'}, {label: 'Insomnia', value: 'insomnia'}, {label: 'PCOD', value: 'pcod'}, {label: 'PCOS', value: 'pcos'}, {label: 'None', value: 'none'}] },
-    { id: 'stress_level', text: 'Overall stress level', type: 'select', options: [{label: 'Low', value: 'low'}, {label: 'Moderate', value: 'moderate'}, {label: 'High', value: 'high'}] },
+    { id: 'physical_activity', text: 'Physical Activity?', type: 'select', options: [{label: 'Rare', value: 'rare'}, {label: 'Moderate', value: 'moderate'}, {label: 'Active', value: 'active'}] },
     { id: 'diet_quality', text: 'Dietary habits', type: 'select', options: [{label: 'Healthy', value: 'healthy'}, {label: 'Average', value: 'average'}, {label: 'Poor', value: 'poor'}] }
   ],
   pregnant: [
