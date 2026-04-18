@@ -1,0 +1,232 @@
+.container {
+  min-height: 100vh;
+  background-color: var(--background);
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+}
+
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem 2rem;
+  background-color: var(--card);
+  border-bottom: 1px solid var(--border);
+  box-shadow: 0 2px 10px rgba(0,0,0,0.02);
+}
+
+.logo {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 1.5rem;
+  font-weight: 600;
+  color: var(--primary);
+}
+
+.navLinks {
+  display: flex;
+  gap: 1.5rem;
+  align-items: center;
+}
+
+.navItem {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 1rem;
+  font-weight: 500;
+  color: var(--foreground-muted);
+  cursor: pointer;
+  padding: 0.5rem 1rem;
+  border-radius: 2rem;
+  transition: all 0.2s ease;
+  background: transparent;
+  border: none;
+  font-family: inherit;
+}
+
+.navItem:hover {
+  color: var(--primary);
+}
+
+.navItemActive {
+  background-color: var(--accent);
+  color: var(--primary);
+}
+
+.content {
+  flex: 1;
+  padding: 2rem;
+  max-width: 1200px;
+  margin: 0 auto;
+  width: 100%;
+}
+
+.gridContainer {
+  display: grid;
+  grid-template-columns: 3fr 2fr;
+  gap: 2rem;
+  margin-bottom: 2rem;
+}
+
+.card {
+  background-color: var(--card);
+  border: 1px solid var(--border);
+  border-radius: 1.5rem;
+  padding: 2rem;
+}
+
+.cardHeader {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  margin-bottom: 2rem;
+}
+
+.cardTitle {
+  font-size: 1.25rem;
+  font-weight: 600;
+  color: var(--foreground);
+}
+
+.inputGroup {
+  margin-bottom: 1.5rem;
+}
+
+.inputLabel {
+  display: block;
+  font-size: 0.95rem;
+  font-weight: 500;
+  color: var(--foreground);
+  margin-bottom: 0.5rem;
+}
+
+.inputField {
+  width: 100%;
+  padding: 0.75rem 1.25rem;
+  border: 1px solid var(--border);
+  border-radius: 2rem;
+  background-color: var(--card);
+  font-family: inherit;
+  font-size: 1rem;
+  color: var(--foreground);
+  transition: border-color 0.2s;
+}
+
+.inputField:focus {
+  outline: none;
+  border-color: var(--primary);
+}
+
+.infoCardsContainer {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.infoCard {
+  border-radius: 1.5rem;
+  padding: 2rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.infoCardPrimary {
+  background-color: var(--chart-4); /* #FEF2F4 from globals */
+  color: var(--primary);
+}
+
+.infoCardPrimary .infoLabel {
+  color: var(--foreground-muted);
+}
+
+.infoCardPrimary .infoValue {
+  color: var(--primary);
+}
+
+.infoCardSuccess {
+  background-color: #E8F5E9;
+  color: #2E7D32;
+}
+
+.infoCardSuccess .infoLabel {
+  color: #4CAF50;
+}
+
+.infoCardSuccess .infoValue {
+  color: #2E7D32;
+}
+
+.infoCardSuccess .infoSubtitle {
+  color: #2E7D32;
+  font-size: 0.95rem;
+  margin-top: 0.5rem;
+}
+
+.infoLabel {
+  font-size: 0.95rem;
+  margin-bottom: 0.5rem;
+}
+
+.infoValue {
+  font-size: 1.5rem;
+  font-weight: 600;
+}
+
+.historyList {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.historyItem {
+  background-color: var(--background); /* #FEF2F4 */
+  border-radius: 1rem;
+  padding: 1.5rem 2rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.historyDate {
+  font-size: 1.1rem;
+  font-weight: 500;
+  color: var(--foreground);
+  margin-bottom: 0.2rem;
+}
+
+.historyDuration {
+  font-size: 0.95rem;
+  color: var(--foreground-muted);
+}
+
+.historyLengthWrapper {
+  text-align: right;
+}
+
+.historyLengthLabel {
+  font-size: 0.95rem;
+  color: var(--foreground-muted);
+  margin-bottom: 0.2rem;
+}
+
+.historyLengthValue {
+  font-size: 1.1rem;
+  font-weight: 500;
+  color: var(--foreground);
+}
+
+@media (max-width: 900px) {
+  .gridContainer {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 768px) {
+  .navLinks {
+    display: none;
+  }
+}

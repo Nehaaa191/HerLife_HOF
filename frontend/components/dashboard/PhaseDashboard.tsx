@@ -3,7 +3,8 @@
 import React, { useEffect, useState } from 'react';
 import { motion } from 'framer-motion';
 import { useRouter } from 'next/navigation';
-import styles from '../../welcome/Welcome.module.css';
+//import styles from '../../welcome/Welcome.module.css';
+import YoungWomenDashboard from './YoungWomenDashboard';
 
 export default function PhaseDashboard({ phase }: { phase: string }) {
   const [name, setName] = useState('');
@@ -18,6 +19,10 @@ export default function PhaseDashboard({ phase }: { phase: string }) {
       } catch (e) {}
     }
   }, []);
+
+  if (phase === 'young_women') {
+    return <YoungWomenDashboard userName={name} />;
+  }
 
   const phaseTitle = phase.charAt(0).toUpperCase() + phase.slice(1);
 
