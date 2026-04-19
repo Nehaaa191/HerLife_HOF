@@ -6,84 +6,28 @@ import { useRouter } from 'next/navigation';
 import { 
   Heart, 
   Home, 
-  Apple, 
-  Dumbbell, 
-  Brain, 
-  BookOpen, 
-  Trash2,
-  Calendar,
-  Flame,
-  Droplets,
-  Smile,
-  Moon
+  Apple,
+  Dumbbell,
+  BrainCircuit,
+  BookOpen,
+  Droplet
 } from 'lucide-react';
 import styles from './MenopauseDashboard.module.css';
-
-interface OnboardingData {
-  userName?: string;
-  answers?: {
-    last_period?: string;
-    stage?: string;
-  };
-}
+import UserMenu from '../shared/UserMenu';
 
 export default function MenopauseDashboard({ userName }: { userName?: string }) {
   const router = useRouter();
-  const [data, setData] = useState<OnboardingData | null>(null);
-  const [stats, setStats] = useState({
-    daysSince: 125,
-    stage: 'Transitioning',
-    lastPeriodDate: 'Dec 15, 2025'
-  });
-
-  useEffect(() => {
-    const raw = localStorage.getItem('herlife_onboarding');
-    if (raw) {
-      try {
-        const parsed = JSON.parse(raw);
-        setData(parsed);
-        
-        if (parsed.answers?.last_period) {
-          const lastDate = new Date(parsed.answers.last_period);
-          const today = new Date();
-          const diffTime = Math.abs(today.getTime() - lastDate.getTime());
-          const diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24));
-          
-          setStats({
-            daysSince: diffDays,
-            stage: parsed.answers.stage || 'Transitioning',
-            lastPeriodDate: lastDate.toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' })
-          });
-        }
-      } catch (e) {
-        console.error('Failed to parse onboarding data', e);
-      }
-    }
-  }, []);
-
-  const containerVariants = {
-    hidden: { opacity: 0 },
-    visible: { 
-      opacity: 1,
-      transition: { staggerChildren: 0.1 }
-    }
-  };
-
-  const itemVariants = {
-    hidden: { opacity: 0, y: 20 },
-    visible: { opacity: 1, y: 0 }
-  };
 
   return (
     <div className={styles.container}>
-      {/* MenoWell Navigation Bar */}
+      {/* Navigation Bar */}
       <nav className={styles.navbar}>
         <div className={styles.logo}>
-          <Heart fill="#D14D72" color="#D14D72" size={28} />
+          <Heart fill="currentColor" color="#D14D72" size={28} />
           HerLife
         </div>
         <div className={styles.navLinks}>
-          <button className={styles.navItem} onClick={() => router.push('/dashboard')}>
+          <button className={styles.navItem} onClick={() => router.push('/')}>
             <Home size={20} /> Home
           </button>
           <button className={styles.navItem} onClick={() => router.push('/menopause/nutrition')}>
@@ -93,138 +37,158 @@ export default function MenopauseDashboard({ userName }: { userName?: string }) 
             <Dumbbell size={20} /> Exercise
           </button>
           <button className={styles.navItem} onClick={() => router.push('/menopause/mental-health')}>
-            <Brain size={20} /> Mental Health
+            <BrainCircuit size={20} /> Mental Health
           </button>
           <button className={styles.navItem} onClick={() => router.push('/menopause/learn')}>
             <BookOpen size={20} /> Learn
           </button>
+          <UserMenu />
         </div>
       </nav>
 
       <main className={styles.content}>
-        <motion.div
-           variants={containerVariants}
-           initial="hidden"
-           animate="visible"
+        
+        {/* Hero Card */}
+        <motion.div 
+          className={styles.heroCard}
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.5 }}
         >
-          {/* Hero Card */}
-          <motion.section className={styles.heroCard} variants={itemVariants}>
-            <div className={styles.heroTitle}>
-              <Flame size={36} color="white" /> Your Menopause Journey
+          <div className={styles.heroTitle}>
+            <Droplet fill="currentColor" color="white" size={28} /> 
+            Your Menopause Journey
+          </div>
+          
+          <div className={styles.statsGrid}>
+            <div className={styles.statBox}>
+              <div className={styles.statLabel}>Days Since Last Period</div>
+              <div className={styles.statValue}>125</div>
+            </div>
+            <div className={styles.statBox}>
+              <div className={styles.statLabel}>Stage</div>
+              <div className={styles.statValue} style={{fontSize: '1.8rem'}}>Transitioning</div>
+            </div>
+            <div className={styles.statBox}>
+              <div className={styles.statLabel}>Last Period</div>
+              <div className={styles.statValue} style={{fontSize: '1.8rem'}}>Dec 15, 2025</div>
+            </div>
+          </div>
+        </motion.div>
+
+        {/* Symptoms */}
+        <div className={styles.sectionTitle}>Today's Symptoms</div>
+        <div className={styles.symptomsGrid}>
+          <button className={`${styles.symptomCard} ${styles.sympOrange}`}>
+            <span className={styles.symptomIcon}>🔥</span>
+            Hot Flashes
+          </button>
+          <button className={`${styles.symptomCard} ${styles.sympYellow}`}>
+            <span className={styles.symptomIcon}>💧</span>
+            Night Sweats
+          </button>
+          <button className={`${styles.symptomCard} ${styles.sympPink}`}>
+            <span className={styles.symptomIcon}>😌</span>
+            Mood Changes
+          </button>
+          <button className={`${styles.symptomCard} ${styles.sympPurple}`}>
+            <span className={styles.symptomIcon}>😴</span>
+            Sleep Issues
+          </button>
+        </div>
+
+        {/* Quick Links */}
+        <div className={styles.quickLinksGrid}>
+          <button className={styles.quickLinkCard} onClick={() => router.push('/menopause/nutrition')}>
+            <div className={styles.quickLinkIcon}>
+              <Apple size={24} />
+            </div>
+            <div className={styles.quickLinkTitle}>Nutrition</div>
+            <div className={styles.quickLinkDesc}>Foods for menopause</div>
+          </button>
+
+          <button className={styles.quickLinkCard} onClick={() => router.push('/menopause/exercise')}>
+            <div className={styles.quickLinkIcon}>
+              <Dumbbell size={24} />
+            </div>
+            <div className={styles.quickLinkTitle}>Exercise</div>
+            <div className={styles.quickLinkDesc}>Stay active & strong</div>
+          </button>
+
+          <button className={styles.quickLinkCard} onClick={() => router.push('/menopause/mental-health')}>
+            <div className={styles.quickLinkIcon}>
+              <BrainCircuit size={24} />
+            </div>
+            <div className={styles.quickLinkTitle}>Mental Health</div>
+            <div className={styles.quickLinkDesc}>Emotional wellbeing</div>
+          </button>
+
+          <button className={styles.quickLinkCard} onClick={() => router.push('/menopause/learn')}>
+            <div className={styles.quickLinkIcon}>
+              <BookOpen size={24} />
+            </div>
+            <div className={styles.quickLinkTitle}>Learn</div>
+            <div className={styles.quickLinkDesc}>Menopause education</div>
+          </button>
+        </div>
+
+        {/* Understanding Menopause */}
+        <div className={styles.understandingGrid}>
+          <div className={styles.undHeader}>
+            <Heart fill="#D14D72" color="#D14D72" size={24} /> 
+            Understanding Menopause
+          </div>
+          
+          <div className={`${styles.undCard} ${styles.undYellow}`}>
+            <div className={styles.undIcon}>🌸</div>
+            <div className={styles.undTitle}>Perimenopause</div>
+            <div className={styles.undDesc}>Transition period with irregular periods</div>
+          </div>
+          
+          <div className={`${styles.undCard} ${styles.undOrange}`}>
+            <div className={styles.undIcon}>🦋</div>
+            <div className={styles.undTitle}>Menopause</div>
+            <div className={styles.undDesc}>12 months without a period</div>
+          </div>
+          
+          <div className={`${styles.undCard} ${styles.undBeige}`}>
+            <div className={styles.undIcon}>🌺</div>
+            <div className={styles.undTitle}>Postmenopause</div>
+            <div className={styles.undDesc}>Years after menopause</div>
+          </div>
+        </div>
+
+        {/* Daily Wellness Tips */}
+        <div className={styles.tipsContainer}>
+          <div className={styles.sectionTitle}>Daily Wellness Tips</div>
+          
+          <div className={styles.tipList}>
+            <div className={`${styles.tipBox} ${styles.tipYellow}`}>
+              <div className={styles.tipDot}></div>
+              <div className={styles.tipContent}>
+                <div className={styles.tipTitle}>Stay cool with breathable fabrics and layers</div>
+                <div className={styles.tipDesc}>Helps manage hot flashes throughout the day</div>
+              </div>
             </div>
             
-            <div className={styles.heroStatsGrid}>
-              <div className={styles.heroStatBox}>
-                <div className={styles.statLabel}>Days Since Last Period</div>
-                <div className={styles.statValue}>{stats.daysSince}</div>
-              </div>
-              <div className={styles.heroStatBox}>
-                <div className={styles.statLabel}>Stage</div>
-                <div className={styles.statValue}>{stats.stage}</div>
-              </div>
-              <div className={styles.heroStatBox}>
-                <div className={styles.statLabel}>Last Period</div>
-                <div className={styles.statValue}>{stats.lastPeriodDate}</div>
+            <div className={`${styles.tipBox} ${styles.tipOrange}`}>
+              <div className={styles.tipDot}></div>
+              <div className={styles.tipContent}>
+                <div className={styles.tipTitle}>Practice stress-reduction techniques</div>
+                <div className={styles.tipDesc}>Meditation, yoga, or deep breathing can help</div>
               </div>
             </div>
-          </motion.section>
-
-          {/* Today's Symptoms */}
-          <motion.section className={styles.card} variants={itemVariants}>
-            <h2 className={styles.sectionHeader}>Today's Symptoms</h2>
-            <div className={styles.symptomsGrid}>
-              <div className={`${styles.symptomCard} ${styles.hotFlashes}`}>
-                <span className={styles.symptomEmoji}>🔥</span>
-                <span className={styles.symptomText}>Hot Flashes</span>
-              </div>
-              <div className={`${styles.symptomCard} ${styles.nightSweats}`}>
-                <span className={styles.symptomEmoji}>💧</span>
-                <span className={styles.symptomText}>Night Sweats</span>
-              </div>
-              <div className={`${styles.symptomCard} ${styles.moodChanges}`}>
-                <span className={styles.symptomEmoji}>😌</span>
-                <span className={styles.symptomText}>Mood Changes</span>
-              </div>
-              <div className={`${styles.symptomCard} ${styles.sleepIssues}`}>
-                <span className={styles.symptomEmoji}>😴</span>
-                <span className={styles.symptomText}>Sleep Issues</span>
+            
+            <div className={`${styles.tipBox} ${styles.tipYellow}`}>
+              <div className={styles.tipDot}></div>
+              <div className={styles.tipContent}>
+                <div className={styles.tipTitle}>Maintain a healthy diet rich in calcium</div>
+                <div className={styles.tipDesc}>Supports bone health during this transition</div>
               </div>
             </div>
-          </motion.section>
+          </div>
+        </div>
 
-          {/* Row of Action Cards */}
-          <motion.div className={styles.linksGrid} variants={itemVariants}>
-             <div className={styles.linkCard} onClick={() => router.push('/menopause/nutrition')} style={{ cursor: 'pointer' }}>
-                <div className={styles.linkIconBox} style={{backgroundColor: '#FFedd5'}}><Apple color="#FB923C" /></div>
-                <div className={styles.linkInfo}>
-                    <h3>Nutrition</h3>
-                    <p>Foods for menopause</p>
-                </div>
-             </div>
-             <div className={styles.linkCard} onClick={() => router.push('/menopause/exercise')} style={{ cursor: 'pointer' }}>
-                <div className={styles.linkIconBox} style={{backgroundColor: '#FCE7F3'}}><Dumbbell color="#D14D72" /></div>
-                <div className={styles.linkInfo}>
-                    <h3>Exercise</h3>
-                    <p>Stay active & strong</p>
-                </div>
-             </div>
-             <div className={styles.linkCard} onClick={() => router.push('/menopause/mental-health')} style={{ cursor: 'pointer' }}>
-                <div className={styles.linkIconBox} style={{backgroundColor: '#EDE9FE'}}><Brain color="#7E22CE" /></div>
-                <div className={styles.linkInfo}>
-                    <h3>Mental Health</h3>
-                    <p>Emotional wellbeing</p>
-                </div>
-             </div>
-             <div className={styles.linkCard} onClick={() => router.push('/menopause/learn')} style={{ cursor: 'pointer' }}>
-                <div className={styles.linkIconBox} style={{backgroundColor: '#FEF9C3'}}><BookOpen color="#EAB308" /></div>
-                <div className={styles.linkInfo}>
-                    <h3>Learn</h3>
-                    <p>Menopause education</p>
-                </div>
-             </div>
-          </motion.div>
-
-          {/* Understanding Menopause */}
-          <motion.section className={styles.card} variants={itemVariants}>
-            <div className={styles.sectionHeader} style={{display: 'flex', alignItems: 'center', gap: '0.5rem', color: '#D14D72'}}>
-                <Heart size={20} fill="currentColor" /> Understanding Menopause
-            </div>
-            <div className={styles.stagesGrid}>
-              <div className={`${styles.stageCard} ${styles.stageCard1}`}>
-                <h3>Perimenopause</h3>
-                <p>Transition period with irregular periods</p>
-              </div>
-              <div className={`${styles.stageCard} ${styles.stageCard2}`}>
-                <h3>Menopause</h3>
-                <p>12 months without a period</p>
-              </div>
-              <div className={`${styles.stageCard} ${styles.stageCard3}`}>
-                <h3>Postmenopause</h3>
-                <p>Years after menopause</p>
-              </div>
-            </div>
-          </motion.section>
-
-          {/* Daily Wellness Tips */}
-          <motion.section className={styles.card} variants={itemVariants}>
-            <h2 className={styles.sectionHeader} style={{color: '#1F2937'}}>Daily Wellness Tips</h2>
-            <div className={styles.tipsContainer}>
-              <div className={`${styles.tipBox} ${styles.tip1}`}>
-                <h4>Stay cool with breathable fabrics and layers</h4>
-                <p>Helps manage hot flashes throughout the day</p>
-              </div>
-              <div className={`${styles.tipBox} ${styles.tip2}`}>
-                <h4>Practice stress-reduction techniques</h4>
-                <p>Meditation, yoga, or deep breathing can help</p>
-              </div>
-              <div className={`${styles.tipBox} ${styles.tip3}`}>
-                <h4>Maintain a healthy diet rich in calcium</h4>
-                <p>Supports bone health during this transition</p>
-              </div>
-            </div>
-          </motion.section>
-
-        </motion.div>
       </main>
     </div>
   );

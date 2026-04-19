@@ -16,9 +16,11 @@ import {
   Leaf,
   Pill,
   AlertCircle,
-  TrendingUp
+  TrendingUp,
+  X
 } from 'lucide-react';
 import styles from './PcosSupport.module.css';
+import UserMenu from '../shared/UserMenu';
 
 export default function PcosSupportPage() {
   const router = useRouter();
@@ -31,6 +33,14 @@ export default function PcosSupportPage() {
     'Acne': false,
     'Hair thinning': false
   });
+
+  const [selectedStory, setSelectedStory] = useState<{id: number, user: string, title: string, fullText: string} | null>(null);
+
+  const stories = [
+    { id: 1, user: '@sarah_wellness', title: "After 3 months of following a low-GI diet...", fullText: "My cycles became more regular, and I lost 15 pounds. Small changes really do add up! I also focused on eating more protein which helped curb my cravings significantly." },
+    { id: 2, user: '@emma_health', title: "Combining strength training with stress management...", fullText: "My energy levels improved dramatically, and my hormones started to balance naturally. Yoga and lifting weights twice a week changed my entire PCOS experience!" },
+    { id: 3, user: '@mia_lifestyle', title: "Taking inositol and Vitamin D daily...", fullText: "It took a few months, but I finally got my period back naturally! Consistency with my supplements has been the absolute key to my PCOS management." }
+  ];
 
   const toggleSymptom = (name: string) => {
     setSymptoms(prev => ({ ...prev, [name]: !prev[name as keyof typeof prev] }));
@@ -88,6 +98,7 @@ export default function PcosSupportPage() {
           <button className={styles.navItem} onClick={() => router.push('/learn')}>
             <BookOpen size={20} /> Learn
           </button>
+          <UserMenu />
         </div>
       </nav>
 
@@ -216,16 +227,30 @@ export default function PcosSupportPage() {
             <TrendingUp color="var(--primary)" size={24} /> Success Stories & Motivation
           </div>
           <div className={styles.storiesContainer}>
-            <div className={styles.storyBox}>
-              <div className={styles.storyQuote}>"After 3 months of following a low-GI diet..."</div>
-              <div className={styles.storyText}>My cycles became more regular, and I lost 15 pounds. Small changes really do add up!</div>
-            </div>
-            <div className={styles.storyBox}>
-              <div className={styles.storyQuote}>"Combining strength training with stress management..."</div>
-              <div className={styles.storyText}>My energy levels improved dramatically, and my hormones started to balance naturally.</div>
-            </div>
+            {stories.map(story => (
+               <button key={story.id} className={styles.storyBoxBtn} onClick={() => setSelectedStory(story)}>
+                 <span className={styles.storyUser}>{story.user}</span>
+                 <span className={styles.storyPreview}>"{story.title}"</span>
+                 <span className={styles.storyReadMore}>Read More...</span>
+               </button>
+            ))}
           </div>
         </div>
+
+        {/* Story Modal */}
+        {selectedStory && (
+          <div className={styles.modalOverlay} onClick={() => setSelectedStory(null)}>
+            <div className={styles.modalContent} onClick={e => e.stopPropagation()}>
+              <div className={styles.modalHeader}>
+                <span className={styles.modalUser}>{selectedStory.user}</span>
+                <button className={styles.closeBtn} onClick={() => setSelectedStory(null)}>
+                  <X size={20} />
+                </button>
+              </div>
+              <div className={styles.modalText}>{selectedStory.fullText}</div>
+            </div>
+          </div>
+        )}
 
       </main>
     </div>

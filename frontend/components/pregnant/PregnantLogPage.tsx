@@ -13,6 +13,7 @@ import {
   Activity
 } from 'lucide-react';
 import styles from './PregnantLog.module.css';
+import UserMenu from '../shared/UserMenu';
 
 export default function PregnantLogPage() {
   const router = useRouter();
@@ -85,6 +86,7 @@ export default function PregnantLogPage() {
           <button className={`${styles.navItem} ${styles.navItemActive}`} onClick={() => {}}>
             <FileText size={20} /> Daily Log
           </button>
+          <UserMenu />
         </div>
       </nav>
 

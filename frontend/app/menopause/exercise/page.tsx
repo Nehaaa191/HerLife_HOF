@@ -1,6 +1,6 @@
 import React from 'react';
-import MenopauseExercisePage from '../../../components/menopause/MenopauseExercisePage';
+import ExercisePage from '../../../components/menopause/ExercisePage';
 
-export default function MenopauseExercise() {
-  return <MenopauseExercisePage />;
+export default function Page() {
+  return <ExercisePage />;
 }

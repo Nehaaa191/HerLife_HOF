@@ -40,7 +40,7 @@ export default function PhaseDashboard({ phase }: { phase: string }) {
     return <PregnantDashboard userName={name} />;
   }
 
-  if (phase === 'menopause') {
+  if (phase === 'menopause' || phase === 'postmenopause' || phase === 'perimenopause') {
     return <MenopauseDashboard userName={name} />;
   }
 

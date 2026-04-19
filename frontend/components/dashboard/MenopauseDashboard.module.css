@@ -1,20 +1,19 @@
 .container {
   min-height: 100vh;
-  background-color: #FFFBEB; /* Warm cream/ivory background */
-  padding-bottom: 5rem;
-  font-family: inherit;
+  background-color: #FEF9F6;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
 }
 
 .navbar {
-  background: white;
-  padding: 1rem 5%;
   display: flex;
   justify-content: space-between;
   align-items: center;
-  box-shadow: 0 2px 10px rgba(0,0,0,0.05);
-  position: sticky;
-  top: 0;
-  z-index: 100;
+  padding: 1rem 2rem;
+  background-color: white;
+  border-bottom: 1px solid #F1E5E8;
+  box-shadow: 0 2px 10px rgba(0,0,0,0.02);
 }
 
 .logo {
@@ -29,251 +28,300 @@
 .navLinks {
   display: flex;
   gap: 1.5rem;
+  align-items: center;
 }
 
 .navItem {
-  background: none;
-  border: none;
   display: flex;
   align-items: center;
   gap: 0.5rem;
-  font-weight: 500;
-  color: #6B7280;
+  font-size: 1rem;
+  font-weight: 600;
+  color: #4A4A4A;
   cursor: pointer;
-  padding: 0.5rem 1rem;
-  border-radius: 999px;
-  transition: all 0.2s;
+  padding: 0.5rem 1.25rem;
+  border-radius: 2rem;
+  transition: all 0.2s ease;
+  background: transparent;
+  border: none;
+  font-family: inherit;
 }
 
-.navItemActive {
-  background: #D14D72;
-  color: white;
-}
-
-.navItem:hover:not(.navItemActive) {
-  background: #FCE7F3;
+.navItem:hover {
   color: #D14D72;
 }
 
-.content {
-  max-width: 1200px;
-  margin: 2rem auto;
-  padding: 0 1.5rem;
+.navItemActive {
+  background-color: #D14D72;
+  color: white;
 }
 
-/* Hero Card */
+.navItemActive:hover {
+  color: white;
+}
+
+.content {
+  flex: 1;
+  padding: 2.5rem;
+  max-width: 1200px;
+  margin: 0 auto;
+  width: 100%;
+}
+
 .heroCard {
-  background: linear-gradient(135deg, #7E22CE 0%, #4C1D95 100%);
-  border-radius: 2rem;
+  background: linear-gradient(135deg, #A44A94, #6D2A68);
+  border-radius: 1.5rem;
   padding: 2.5rem;
   color: white;
-  margin-bottom: 2rem;
-  box-shadow: 0 10px 30px rgba(76, 29, 149, 0.2);
+  margin-bottom: 2.5rem;
+  box-shadow: 0 10px 30px rgba(109, 42, 104, 0.2);
 }
 
 .heroTitle {
+  font-size: 1.8rem;
+  font-weight: 700;
   display: flex;
   align-items: center;
-  gap: 1rem;
-  font-size: 2rem;
-  font-weight: 800;
+  gap: 0.75rem;
   margin-bottom: 2rem;
 }
 
-.heroStatsGrid {
+.statsGrid {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   gap: 1.5rem;
 }
 
-.heroStatBox {
+.statBox {
   background: rgba(255, 255, 255, 0.15);
   backdrop-filter: blur(10px);
+  border-radius: 1rem;
   padding: 1.5rem;
-  border-radius: 1.5rem;
-  border: 1px solid rgba(255, 255, 255, 0.2);
 }
 
 .statLabel {
-  font-size: 0.9rem;
-  opacity: 0.8;
+  font-size: 1rem;
+  font-weight: 500;
+  opacity: 0.9;
   margin-bottom: 0.5rem;
-  font-weight: 600;
 }
 
 .statValue {
-  font-size: 1.85rem;
-  font-weight: 800;
+  font-size: 2.2rem;
+  font-weight: 700;
 }
 
 /* Symptoms Section */
-.card {
-  background: white;
-  border: 2px solid #FDF2F8;
-  border-radius: 2rem;
-  padding: 2rem;
-  margin-bottom: 2rem;
-  box-shadow: 0 4px 15px rgba(0,0,0,0.02);
-}
-
-.sectionHeader {
-  font-size: 1.25rem;
+.sectionTitle {
+  font-size: 1.4rem;
   font-weight: 700;
-  color: #D14D72;
+  color: #4A4A4A;
   margin-bottom: 1.5rem;
 }
 
 .symptomsGrid {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
-  gap: 1rem;
+  gap: 1.5rem;
+  margin-bottom: 3rem;
 }
 
 .symptomCard {
-  border-radius: 1.5rem;
-  padding: 1.5rem;
+  border-radius: 1rem;
+  padding: 2rem 1.5rem;
   text-align: center;
   cursor: pointer;
-  transition: transform 0.2s;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  font-weight: 600;
+  font-size: 1.1rem;
+  color: #374151;
+  border: none;
+  font-family: inherit;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 1rem;
 }
 
 .symptomCard:hover {
   transform: translateY(-5px);
+  box-shadow: 0 8px 20px rgba(0,0,0,0.05);
 }
 
-.symptomEmoji {
-  font-size: 2rem;
-  margin-bottom: 0.75rem;
-  display: block;
+.symptomIcon {
+  font-size: 2.5rem;
 }
 
-.symptomText {
-  font-weight: 700;
-  color: #4A4A4A;
-  font-size: 1rem;
-}
+.sympOrange { background-color: #FFEADB; }
+.sympYellow { background-color: #FEF3C7; }
+.sympPink { background-color: #FCE7F3; }
+.sympPurple { background-color: #5B21B6; color: white; }
 
-/* Specific Symptom Colors */
-.hotFlashes { background-color: #FFEDD5; }
-.nightSweats { background-color: #FEF9C3; }
-.moodChanges { background-color: #F9A8D4; }
-.sleepIssues { background-color: #4C1D95; color: white; }
-.sleepIssues .symptomText { color: #A5B4FC; }
-
-/* Quick Links */
-.linksGrid {
+/* Quick Links Grid */
+.quickLinksGrid {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
   gap: 1.5rem;
-  margin-bottom: 2rem;
+  margin-bottom: 3rem;
 }
 
-.linkCard {
-  background: white;
-  border-radius: 1.5rem;
+.quickLinkCard {
+  background-color: white;
+  border-radius: 1rem;
   padding: 1.5rem;
+  text-align: center;
+  border: 1px solid #E5E7EB;
+  cursor: pointer;
+  transition: all 0.2s;
   display: flex;
-  gap: 1rem;
+  flex-direction: column;
   align-items: center;
-  transition: all 0.3s;
-  box-shadow: 0 4px 10px rgba(0,0,0,0.03);
+  gap: 0.75rem;
+  text-decoration: none;
+  font-family: inherit;
 }
 
-.linkCard:hover {
-  transform: translateY(-3px);
-  box-shadow: 0 8px 20px rgba(126, 34, 206, 0.1);
+.quickLinkCard:hover {
+  border-color: #D14D72;
+  box-shadow: 0 4px 12px rgba(209, 77, 114, 0.1);
+  transform: translateY(-2px);
 }
 
-.linkIconBox {
+.quickLinkIcon {
   width: 48px;
   height: 48px;
-  border-radius: 1rem;
+  border-radius: 50%;
+  background-color: #FEF2F4;
+  color: #D14D72;
   display: flex;
   align-items: center;
   justify-content: center;
-  color: white;
 }
 
-.linkInfo h3 {
-  font-weight: 800;
-  font-size: 1.1rem;
-  margin-bottom: 0.25rem;
+.quickLinkTitle {
+  font-weight: 700;
   color: #1F2937;
+  font-size: 1.1rem;
 }
 
-.linkInfo p {
-  font-size: 0.85rem;
+.quickLinkDesc {
+  font-size: 0.9rem;
   color: #6B7280;
 }
 
 /* Understanding Menopause */
-.stagesGrid {
+.understandingGrid {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   gap: 1.5rem;
-}
-
-.stageCard {
-  padding: 1.5rem;
+  margin-bottom: 3rem;
+  background-color: white;
+  border: 1px solid #FCA5A5;
   border-radius: 1.5rem;
-  text-align: center;
-  border: 1px solid #E5E7EB;
+  padding: 2.5rem;
 }
 
-.stageCard1 { background-color: #FEF3C7; }
-.stageCard2 { background-color: #FFedd5; }
-.stageCard3 { background-color: #FEFCE8; }
-
-.stageCard h3 {
-  font-weight: 800;
-  font-size: 1.2rem;
+.undHeader {
+  grid-column: 1 / -1;
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: #1F2937;
   margin-bottom: 0.5rem;
+}
+
+.undCard {
+  border-radius: 1rem;
+  padding: 2rem 1.5rem;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+.undIcon {
+  font-size: 2.5rem;
+  margin-bottom: 0.5rem;
+}
+
+.undTitle {
+  font-weight: 700;
+  font-size: 1.1rem;
   color: #1F2937;
 }
 
-.stageCard p {
-  font-size: 0.9rem;
+.undDesc {
+  font-size: 0.95rem;
   color: #4B5563;
 }
 
+.undYellow { background-color: #FEF3C7; }
+.undOrange { background-color: #FFB085; }
+.undBeige { background-color: #FDF3E7; }
+
 /* Wellness Tips */
 .tipsContainer {
+  background-color: white;
+  border: 1px solid #FCA5A5;
+  border-radius: 1.5rem;
+  padding: 2.5rem;
+}
+
+.tipList {
   display: flex;
   flex-direction: column;
   gap: 1rem;
 }
 
 .tipBox {
+  border-radius: 1rem;
   padding: 1.25rem 2rem;
-  border-radius: 1.25rem;
+  display: flex;
+  align-items: flex-start;
+  gap: 1rem;
+}
+
+.tipDot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background-color: #D14D72;
+  margin-top: 0.4rem;
+  flex-shrink: 0;
+}
+
+.tipContent {
   display: flex;
   flex-direction: column;
-  gap: 0.25rem;
 }
 
-.tipBox h4 {
-  font-weight: 700;
+.tipTitle {
+  font-weight: 600;
   color: #1F2937;
-  font-size: 1rem;
+  font-size: 1.05rem;
+  margin-bottom: 0.25rem;
 }
 
-.tipBox p {
-  font-size: 0.9rem;
+.tipDesc {
   color: #4B5563;
+  font-size: 0.95rem;
 }
 
-.tip1 { background-color: #FEFCE8; border-left: 5px solid #FDE047; }
-.tip2 { background-color: #FFEDD5; border-left: 5px solid #FB923C; }
-.tip3 { background-color: #FEFCE8; border-left: 5px solid #FDE047; }
+.tipYellow { background-color: #FEF3C7; }
+.tipOrange { background-color: #FFB085; }
 
 @media (max-width: 900px) {
-  .heroStatsGrid, .symptomsGrid, .linksGrid, .stagesGrid {
-    grid-template-columns: repeat(2, 1fr);
+  .statsGrid, .symptomsGrid, .quickLinksGrid, .understandingGrid {
+    grid-template-columns: 1fr 1fr;
   }
 }
 
 @media (max-width: 600px) {
-  .heroStatsGrid, .symptomsGrid, .linksGrid, .stagesGrid {
+  .statsGrid, .symptomsGrid, .quickLinksGrid, .understandingGrid {
     grid-template-columns: 1fr;
   }
 }

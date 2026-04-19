@@ -1,6 +1,6 @@
 import React from 'react';
-import MenopauseLearnPage from '../../../components/menopause/MenopauseLearnPage';
+import MenopauseLearnPage from '../../../components/menopause/LearnPage';
 
-export default function MenopauseLearn() {
+export default function Page() {
   return <MenopauseLearnPage />;
 }

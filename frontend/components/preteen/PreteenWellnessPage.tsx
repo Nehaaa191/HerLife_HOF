@@ -13,6 +13,7 @@ import {
   Apple
 } from 'lucide-react';
 import styles from './PreteenWellness.module.css';
+import UserMenu from '../shared/UserMenu';
 
 export default function PreteenWellnessPage() {
   const router = useRouter();
@@ -86,6 +87,7 @@ export default function PreteenWellnessPage() {
           <button className={styles.navItem} onClick={() => router.push('/preteen/test')}>
             <HelpCircle size={20} /> Test It Out
           </button>
+          <UserMenu />
         </div>
       </nav>
 

@@ -15,6 +15,7 @@ import {
   Download
 } from 'lucide-react';
 import styles from './Learn.module.css';
+import UserMenu from '../shared/UserMenu';
 
 export default function LearnPage() {
   const router = useRouter();
@@ -45,10 +46,10 @@ export default function LearnPage() {
   ];
 
   const resources = [
-    { title: "Cycle Tracking Journal", desc: "Printable monthly tracker" },
-    { title: "Hormone Guide", desc: "Visual hormone timeline" },
-    { title: "Nutrition Planner", desc: "Meal ideas by cycle phase" },
-    { title: "Exercise Calendar", desc: "Phase-based workout plan" }
+    { title: "Cycle Tracking Journal", desc: "Printable monthly tracker", file: "/resources/Cycle_Tracking_Journal.doc" },
+    { title: "Hormone Guide", desc: "Visual hormone timeline", file: "/resources/Hormone_Guide.doc" },
+    { title: "Nutrition Planner", desc: "Meal ideas by cycle phase", file: "/resources/Nutrition_Planner.doc" },
+    { title: "Exercise Calendar", desc: "Phase-based workout plan", file: "/resources/Exercise_Calendar.doc" }
   ];
 
   return (
@@ -75,6 +76,7 @@ export default function LearnPage() {
           <button className={`${styles.navItem} ${styles.navItemActive}`} onClick={() => {}}>
             <BookOpen size={20} /> Learn
           </button>
+          <UserMenu />
         </div>
       </nav>
 
@@ -149,10 +151,21 @@ export default function LearnPage() {
           </div>
           <div className={styles.resourcesGrid}>
             {resources.map((res, idx) => (
-              <div key={idx} className={styles.resourceBox}>
-                <div className={styles.resourceTitle}>{res.title}</div>
-                <div className={styles.resourceDesc}>{res.desc}</div>
-              </div>
+              <a 
+                key={idx} 
+                href={res.file} 
+                download={res.file.split('/').pop()} 
+                className={styles.resourceBox}
+                style={{ textDecoration: 'none', color: 'inherit', display: 'flex', flexDirection: 'column' }}
+              >
+                <div style={{ flex: 1 }}>
+                  <div className={styles.resourceTitle}>{res.title}</div>
+                  <div className={styles.resourceDesc}>{res.desc}</div>
+                </div>
+                <div style={{ display: 'flex', justifyContent: 'flex-end', marginTop: '1rem' }}>
+                  <Download size={20} />
+                </div>
+              </a>
             ))}
           </div>
         </div>

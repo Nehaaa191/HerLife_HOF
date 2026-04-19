@@ -15,6 +15,7 @@ import {
   Droplet
 } from 'lucide-react';
 import styles from './YoungWomenDashboard.module.css';
+import UserMenu from '../shared/UserMenu';
 
 export default function YoungWomenDashboard({ userName }: { userName: string }) {
   const router = useRouter();
@@ -60,6 +61,7 @@ export default function YoungWomenDashboard({ userName }: { userName: string }) 
           <button className={styles.navItem} onClick={() => router.push('/learn')}>
             <BookOpen size={20} /> Learn
           </button>
+          <UserMenu />
         </div>
       </nav>
 

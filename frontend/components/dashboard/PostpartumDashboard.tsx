@@ -14,6 +14,7 @@ import {
   Lightbulb
 } from 'lucide-react';
 import styles from './PostpartumDashboard.module.css';
+import UserMenu from '../shared/UserMenu';
 
 export default function PostpartumDashboard({ userName }: { userName?: string }) {
   const router = useRouter();
@@ -56,6 +57,7 @@ export default function PostpartumDashboard({ userName }: { userName?: string })
           <button className={styles.navItem} onClick={() => router.push('/postpartum/mental-health')}>
             <Heart size={20} /> Mental Health
           </button>
+          <UserMenu />
         </div>
       </nav>
 

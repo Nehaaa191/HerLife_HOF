@@ -1,0 +1,150 @@
+.menuContainer {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+.menuBtn {
+  background: transparent;
+  border: none;
+  color: var(--primary);
+  cursor: pointer;
+  padding: 0.5rem;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background-color 0.2s;
+}
+
+.menuBtn:hover {
+  background-color: var(--bg-soft);
+}
+
+.dropdown {
+  position: absolute;
+  top: calc(100% + 0.5rem);
+  right: 0;
+  width: 220px;
+  background-color: white;
+  border-radius: 1rem;
+  box-shadow: 0 10px 40px rgba(0,0,0,0.1);
+  border: 1px solid #E5E7EB;
+  overflow: hidden;
+  z-index: 50;
+  display: flex;
+  flex-direction: column;
+}
+
+.menuItem {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  padding: 1rem 1.25rem;
+  font-size: 1rem;
+  font-weight: 500;
+  color: #374151;
+  background: transparent;
+  border: none;
+  text-align: left;
+  cursor: pointer;
+  transition: background-color 0.2s, color 0.2s;
+  font-family: inherit;
+}
+
+.menuItem:hover {
+  background-color: var(--bg-soft);
+  color: var(--primary);
+}
+
+.logoutItem {
+  border-top: 1px solid #E5E7EB;
+  color: #EF4444;
+}
+
+.logoutItem:hover {
+  background-color: #FEF2F2;
+  color: #DC2626;
+}
+
+/* Modal Styles */
+.modalOverlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0,0,0,0.5);
+  z-index: 9999;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  backdrop-filter: blur(2px);
+}
+
+.modalContent {
+  background-color: white;
+  border-radius: 1.5rem;
+  padding: 2rem;
+  width: 90%;
+  max-width: 500px;
+  box-shadow: 0 10px 40px rgba(0,0,0,0.2);
+  animation: modalPop 0.3s ease-out;
+}
+
+@keyframes modalPop {
+  0% { opacity: 0; transform: scale(0.95); }
+  100% { opacity: 1; transform: scale(1); }
+}
+
+.modalHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1rem;
+}
+
+.closeBtn {
+  background: transparent;
+  border: none;
+  color: #6B7280;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0.25rem;
+  border-radius: 50%;
+  transition: all 0.2s;
+}
+
+.closeBtn:hover {
+  background-color: #F3F4F6;
+  color: #1F2937;
+}
+
+.phaseGrid {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.phaseBtn {
+  background-color: white;
+  border: 1px solid #E5E7EB;
+  border-radius: 0.75rem;
+  padding: 1rem;
+  text-align: left;
+  font-weight: 600;
+  color: #374151;
+  cursor: pointer;
+  transition: all 0.2s;
+  font-family: inherit;
+  font-size: 1.05rem;
+}
+
+.phaseBtn:hover {
+  border-color: var(--primary);
+  background-color: var(--bg-soft);
+  color: var(--primary);
+  transform: translateY(-1px);
+}

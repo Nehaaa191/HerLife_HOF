@@ -1,6 +1,6 @@
 import React from 'react';
-import MenopauseMentalHealthPage from '../../../components/menopause/MenopauseMentalHealthPage';
+import MentalHealthPage from '../../../components/menopause/MentalHealthPage';
 
-export default function MenopauseMentalHealth() {
-  return <MenopauseMentalHealthPage />;
+export default function Page() {
+  return <MentalHealthPage />;
 }
