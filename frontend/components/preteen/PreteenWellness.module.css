@@ -1,0 +1,358 @@
+.container {
+  min-height: 100vh;
+  background-color: var(--background);
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+}
+
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem 2rem;
+  background-color: var(--card);
+  border-bottom: 1px solid var(--border);
+  box-shadow: 0 2px 10px rgba(0,0,0,0.02);
+}
+
+.logo {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 1.5rem;
+  font-weight: 600;
+  color: #4797B1; /* Blue for preteens */
+}
+
+.navLinks {
+  display: flex;
+  gap: 1.5rem;
+  align-items: center;
+}
+
+.navItem {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 1rem;
+  font-weight: 500;
+  color: var(--foreground-muted);
+  cursor: pointer;
+  padding: 0.5rem 1rem;
+  border-radius: 2rem;
+  transition: all 0.2s ease;
+  background: transparent;
+  border: none;
+  font-family: inherit;
+}
+
+.navItem:hover {
+  color: #4797B1;
+}
+
+.navItemActive {
+  background-color: #E0F2FE; /* Light blue */
+  color: #0284C7;
+}
+
+.content {
+  flex: 1;
+  padding: 2rem;
+  max-width: 1200px;
+  margin: 0 auto;
+  width: 100%;
+}
+
+.card {
+  background-color: var(--card);
+  border-radius: 1.5rem;
+  padding: 2.5rem;
+  margin-bottom: 2rem;
+}
+
+.cardGreenBorder {
+  border: 1px solid #A5D6A7;
+}
+
+.cardYellowBorder {
+  border: 1px solid #FDE68A;
+}
+
+.cardBlueBorder {
+  border: 1px solid #BAE6FD;
+}
+
+.sectionTitle {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  font-size: 1.5rem;
+  font-weight: 700;
+  margin-bottom: 1.5rem;
+  color: #1F2937;
+}
+
+/* Activities & Foods Grid */
+.topGrid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 2rem;
+  margin-bottom: 2rem;
+}
+
+.topCard {
+  border-radius: 1.5rem;
+  padding: 2rem;
+  display: flex;
+  flex-direction: column;
+}
+
+.topSubBox {
+  padding: 1.5rem;
+  border-radius: 1rem;
+  margin-bottom: 1.5rem;
+}
+
+.subBoxYellow { background-color: #FEF3C7; }
+.subBoxPink { background-color: #FEE2E2; }
+
+.subBoxTitle {
+  font-weight: 700;
+  font-size: 1.1rem;
+  color: #1F2937;
+  margin-bottom: 0.25rem;
+}
+
+.subBoxDesc {
+  font-size: 0.95rem;
+  color: #4B5563;
+}
+
+.itemList {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.itemPill {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  padding: 1.25rem 1.5rem;
+  border-radius: 1rem;
+}
+
+.itemPillGreen { background-color: #D1FAE5; }
+.itemPillYellow { background-color: #FEF3C7; }
+
+.itemIcon {
+  font-size: 1.5rem;
+  background-color: rgba(255, 255, 255, 0.5);
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.itemInfo {
+  display: flex;
+  flex-direction: column;
+}
+
+.itemTitle {
+  font-weight: 700;
+  color: #1F2937;
+  font-size: 1.05rem;
+}
+
+.itemDesc {
+  font-size: 0.9rem;
+  color: #4B5563;
+}
+
+/* Water Tracker */
+.waterTrackerCard {
+  background-color: #D1FAE5; /* Light green */
+  border-radius: 1.5rem;
+  padding: 2rem;
+  text-align: center;
+  margin-bottom: 1.5rem;
+}
+
+.waterCount {
+  font-size: 3.5rem;
+  font-weight: 800;
+  color: #4797B1;
+  margin-bottom: 0.25rem;
+}
+
+.waterSub {
+  font-size: 1.1rem;
+  font-weight: 500;
+  color: #1F2937;
+  margin-bottom: 2rem;
+}
+
+.waterBarBg {
+  background-color: #E5E7EB;
+  border-radius: 1rem;
+  height: 1.5rem;
+  width: 100%;
+  overflow: hidden;
+  margin-bottom: 1.5rem;
+}
+
+.waterBarFill {
+  background-color: #4797B1;
+  height: 100%;
+  transition: width 0.3s ease;
+}
+
+.waterActions {
+  display: flex;
+  gap: 1rem;
+  margin-bottom: 2rem;
+}
+
+.waterBtnAdd {
+  flex: 3;
+  background-color: #4797B1;
+  color: white;
+  border: none;
+  border-radius: 1rem;
+  padding: 1.25rem;
+  font-size: 1.2rem;
+  font-weight: 700;
+  cursor: pointer;
+  transition: opacity 0.2s;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+}
+
+.waterBtnAdd:hover {
+  opacity: 0.9;
+}
+
+.waterBtnRemove {
+  flex: 1;
+  background-color: white;
+  color: #4797B1;
+  border: 2px solid #4797B1;
+  border-radius: 1rem;
+  padding: 1.25rem;
+  font-size: 1.1rem;
+  font-weight: 700;
+  cursor: pointer;
+  transition: background-color 0.2s;
+}
+
+.waterBtnRemove:hover {
+  background-color: #E0F2FE;
+}
+
+.waterDropsList {
+  display: flex;
+  gap: 0.75rem;
+  justify-content: space-between;
+}
+
+.waterDropBox {
+  width: 60px;
+  height: 60px;
+  border-radius: 0.75rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.5rem;
+}
+
+.waterDropFilled {
+  background-color: #4797B1;
+  color: white;
+}
+
+.waterDropEmpty {
+  border: 2px solid #E5E7EB;
+  color: #D1D5DB;
+  background-color: white;
+}
+
+/* Self-Care Tips */
+.tipsGrid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1.5rem;
+  margin-top: 1.5rem;
+}
+
+.tipBox {
+  padding: 2.5rem 1.5rem;
+  border-radius: 1.5rem;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1rem;
+  transition: transform 0.2s;
+}
+
+.tipBox:hover {
+  transform: translateY(-4px);
+}
+
+.tipBoxPink { background-color: #FEE2E2; }
+.tipBoxYellow { background-color: #FEF3C7; }
+.tipBoxGreen { background-color: #D1FAE5; }
+
+.tipIcon {
+  font-size: 2.5rem;
+  background-color: white;
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+}
+
+.tipTitle {
+  font-size: 1.25rem;
+  font-weight: 700;
+  color: #1F2937;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+}
+
+.tipDesc {
+  font-size: 1rem;
+  color: #4B5563;
+  line-height: 1.4;
+}
+
+@media (max-width: 900px) {
+  .topGrid {
+    grid-template-columns: 1fr;
+  }
+  .tipsGrid {
+    grid-template-columns: 1fr;
+  }
+  .waterDropsList {
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+}
+
+@media (max-width: 768px) {
+  .navLinks {
+    display: none;
+  }
+}
