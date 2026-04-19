@@ -35,13 +35,23 @@ export default function PhaseQuestionnaire({ phase }: { phase: string }) {
       }
 
       try {
-        // Collect symptom flags
         const symList = answers.ML_SYM || [];
         const pmsList = answers.ML_PMS || [];
         const pcosList = answers.ML_PCOS_S || [];
-        
         const combinedSymptomsList = [...symList, ...pmsList, ...pcosList];
-        const modelSymptomsObj: Record<string, number> = {};
+        
+        const modelSymptomsObj: Record<string, string | number> = {
+          Exercise_Frequency:          answers.Exercise_Frequency,
+          Sleep_Duration:              answers.Sleep_Duration,
+          Stress_Level_1to5:           answers.Stress_Level_1to5,
+          Junk_Food_Frequency_1to5:    answers.Junk_Food_Frequency_1to5,
+          Sugar_Intake_Frequency_1to5: answers.Sugar_Intake_Frequency_1to5,
+          Caffeine_Intake:             answers.Caffeine_Intake,
+          Water_Intake_Litres:         answers.Water_Intake_Litres,
+          Overall_Energy_Level:        answers.Overall_Energy_Level,
+        };
+
+        // Add binary flags for ML model items
         combinedSymptomsList.forEach((sym: string) => {
           modelSymptomsObj[sym] = 1;
         });

@@ -285,6 +285,15 @@ def onboarding():
             "bmi":       bmi
         }).eq("id", user_id).execute()
 
+        model_symptoms = data.get("model_symptoms", {})
+        model_symptoms.update({
+            "Clotting":                   1 if data.get("clotting") == "Yes" else 0,
+            "Difficulty_Losing_Weight":   1 if data.get("difficulty_losing_weight") == "Yes" else 0,
+            "Hormonal_Contraceptive_Use": 1 if data.get("hormonal_contraceptive") == "Yes" else 0,
+            "Skin_Condition_During_Cycle":ordinal_maps["skin"].get(data.get("skin_condition", "Clear"), 0),
+            "Hair_Fall_Level":            ordinal_maps["hair"].get(data.get("hair_fall", "None"), 0),
+        })
+
         # Insert or Update health profile (using upsert to be safe)
         profile_data = {
             "user_id":                  user_id,
@@ -294,14 +303,9 @@ def onboarding():
             "pcos_diagnosed":           1 if data.get("pcos_diagnosed") == "Yes" else (0 if data.get("pcos_diagnosed") == "No" else -1),
             "periods_regular":          1 if data.get("periods_regular") == "Yes" else 0,
             "bleeding_duration":        int(data.get("bleeding_duration") or 4),
-            "clotting":                 1 if data.get("clotting") == "Yes" else 0,
             "pain_level":               int(data.get("pain_level") or 2),
             "missed_periods_frequency": ordinal_maps["missed"].get(data.get("missed_periods_frequency", "Never"), 0),
-            "difficulty_losing_weight": 1 if data.get("difficulty_losing_weight") == "Yes" else 0,
-            "hormonal_contraceptive":   1 if data.get("hormonal_contraceptive") == "Yes" else 0,
-            "skin_condition":           ordinal_maps["skin"].get(data.get("skin_condition", "Clear"), 0),
-            "hair_fall":                ordinal_maps["hair"].get(data.get("hair_fall", "None"), 0),
-            "model_symptoms":           data.get("model_symptoms", {}),
+            "model_symptoms":           model_symptoms,
         }
         
         supabase.table("health_profile").upsert(profile_data).execute()
