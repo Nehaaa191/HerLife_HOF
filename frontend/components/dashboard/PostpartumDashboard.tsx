@@ -14,7 +14,7 @@ import {
   Lightbulb
 } from 'lucide-react';
 import styles from './PostpartumDashboard.module.css';
-import UserMenu from '../shared/UserMenu';
+import DashboardNavbar from '../shared/DashboardNavbar';
 
 export default function PostpartumDashboard({ userName }: { userName?: string }) {
   const router = useRouter();
@@ -36,30 +36,7 @@ export default function PostpartumDashboard({ userName }: { userName?: string })
   return (
     <div className={styles.container}>
       {/* Navigation Bar */}
-      <nav className={styles.navbar}>
-        <div className={styles.logo}>
-          <Heart fill="currentColor" color="var(--primary)" size={28} />
-          HerLife
-        </div>
-        <div className={styles.navLinks}>
-          <button className={`${styles.navItem} ${styles.navItemActive}`} onClick={() => {}}>
-            <Home size={20} /> Home
-          </button>
-          <button className={styles.navItem} onClick={() => router.push('/postpartum/wellness')}>
-            <Activity size={20} /> Track Wellness
-          </button>
-          <button className={styles.navItem} onClick={() => router.push('/postpartum/learn')}>
-            <BookOpen size={20} /> Learn
-          </button>
-          <button className={styles.navItem} onClick={() => router.push('/postpartum/log')}>
-            <FileText size={20} /> Daily Log
-          </button>
-          <button className={styles.navItem} onClick={() => router.push('/postpartum/mental-health')}>
-            <Heart size={20} /> Mental Health
-          </button>
-          <UserMenu />
-        </div>
-      </nav>
+      <DashboardNavbar activeTab="home" />
 
       <main className={styles.content}>
         

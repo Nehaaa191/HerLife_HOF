@@ -4,14 +4,10 @@ import React from 'react';
 import { useRouter } from 'next/navigation';
 import { 
   Heart, 
-  Home, 
-  Activity, 
-  BookOpen, 
-  Gamepad2, 
-  HelpCircle 
+  Gamepad2 
 } from 'lucide-react';
 import styles from './PreteenDashboard.module.css';
-import UserMenu from '../shared/UserMenu';
+import DashboardNavbar from '../shared/DashboardNavbar';
 
 export default function PreteenDashboard({ userName }: { userName?: string }) {
   const router = useRouter();
@@ -27,30 +23,7 @@ export default function PreteenDashboard({ userName }: { userName?: string }) {
   return (
     <div className={styles.container}>
       {/* Navigation Bar */}
-      <nav className={styles.navbar}>
-        <div className={styles.logo}>
-          <Heart fill="currentColor" color="#4797B1" size={28} />
-          HerLife
-        </div>
-        <div className={styles.navLinks}>
-          <button className={`${styles.navItem} ${styles.navItemActive}`} onClick={() => {}}>
-            <Home size={20} /> Home
-          </button>
-          <button className={styles.navItem} onClick={() => router.push('/preteen/wellness')}>
-            <Activity size={20} /> Wellness
-          </button>
-          <button className={styles.navItem} onClick={() => router.push('/preteen/learn')}>
-            <BookOpen size={20} /> Learn
-          </button>
-          <button className={styles.navItem} onClick={() => router.push('/preteen/play')}>
-            <Gamepad2 size={20} /> Play & Learn
-          </button>
-          <button className={styles.navItem} onClick={() => router.push('/preteen/test')}>
-            <HelpCircle size={20} /> Test It Out
-          </button>
-          <UserMenu />
-        </div>
-      </nav>
+      <DashboardNavbar activeTab="home" />
 
       <main className={styles.content}>
         

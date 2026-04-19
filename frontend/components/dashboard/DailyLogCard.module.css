@@ -1,0 +1,186 @@
+.container {
+  background: white;
+  border-radius: 2rem;
+  padding: 2.5rem;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.05);
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+.title {
+  font-size: 1.75rem;
+  font-weight: 800;
+  color: var(--primary);
+  margin-bottom: 0.5rem;
+  text-align: center;
+}
+
+.subtitle {
+  color: #6B7280;
+  text-align: center;
+  margin-bottom: 2.5rem;
+}
+
+.section {
+  margin-bottom: 2rem;
+}
+
+.label {
+  display: block;
+  font-size: 1.1rem;
+  font-weight: 700;
+  color: #374151;
+  margin-bottom: 1rem;
+}
+
+/* Energy Select */
+.optionsGrid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1rem;
+}
+
+.optionBtn {
+  background: #F9FAFB;
+  border: 2px solid #F3F4F6;
+  border-radius: 1rem;
+  padding: 1rem;
+  font-weight: 600;
+  color: #4B5563;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.optionBtnActive {
+  background: var(--primary);
+  border-color: var(--primary);
+  color: white;
+}
+
+/* Sliders */
+.sliderWrapper {
+  padding: 0.5rem 0;
+}
+
+.slider {
+  width: 100%;
+  height: 8px;
+  border-radius: 4px;
+  background: #F3F4F6;
+  outline: none;
+  -webkit-appearance: none;
+}
+
+.slider::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  background: var(--primary);
+  cursor: pointer;
+  box-shadow: 0 0 10px rgba(209, 77, 114, 0.3);
+}
+
+.sliderLabels {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 0.5rem;
+  color: #9CA3AF;
+  font-size: 0.875rem;
+}
+
+/* Water Counter */
+.counterWrapper {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 2rem;
+  background: #FFF9FA;
+  padding: 1.5rem;
+  border-radius: 1.5rem;
+}
+
+.counterBtn {
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  border: 2px solid var(--primary);
+  background: white;
+  color: var(--primary);
+  font-size: 1.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.counterValue {
+  font-size: 2.5rem;
+  font-weight: 800;
+  color: var(--primary);
+}
+
+/* Mood Emojis */
+.moodGrid {
+  display: flex;
+  justify-content: space-between;
+  padding: 0 0.5rem;
+}
+
+.moodBtn {
+  font-size: 2.5rem;
+  background: none;
+  border: none;
+  cursor: pointer;
+  transition: transform 0.2s;
+  padding: 0.5rem;
+  border-radius: 1rem;
+}
+
+.moodBtnActive {
+  background: #FFF1F2;
+  transform: scale(1.2);
+}
+
+/* Period Toggle */
+.toggleWrapper {
+  display: flex;
+  gap: 1rem;
+}
+
+.toggleBtn {
+  flex: 1;
+  padding: 1rem;
+  border-radius: 1rem;
+  border: 2px solid #F3F4F6;
+  background: white;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+.toggleBtnActive {
+  border-color: var(--primary);
+  color: var(--primary);
+  background: #FFF1F2;
+}
+
+.submitBtn {
+  width: 100%;
+  background: var(--primary);
+  color: white;
+  border: none;
+  padding: 1.25rem;
+  border-radius: 1.25rem;
+  font-size: 1.25rem;
+  font-weight: 700;
+  cursor: pointer;
+  transition: all 0.2s;
+  margin-top: 1rem;
+}
+
+.submitBtn:hover {
+  background: var(--primary-hover);
+  transform: translateY(-2px);
+  box-shadow: 0 10px 20px rgba(209, 77, 114, 0.2);
+}

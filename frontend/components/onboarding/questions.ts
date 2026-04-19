@@ -11,6 +11,8 @@ export type Question = {
   min?: number;
   max?: number;
   defaultValue?: any;
+  unit?: string;
+  placeholder?: string;
 };
 
 export const PHASES = [
@@ -33,15 +35,120 @@ export const PHASE_FLOWS: Record<string, Question[]> = {
     { id: 'stress_anxiety', text: 'Do you feel stressed or anxious?', type: 'select', options: [{label: 'Rarely', value: 'rarely'}, {label: 'Sometimes', value: 'sometimes'}, {label: 'Often', value: 'often'}] }
   ],
   young_women: [
-    { id: 'last_period', text: 'When was your last period?', type: 'date' },
-    { id: 'cycle_length', text: 'Average cycle length', type: 'slider', min: 21, max: 40, defaultValue: 28 },
-    { id: 'regularity', text: 'Cycle regularity', type: 'select', options: [{label: 'Regular', value: 'regular'}, {label: 'Irregular', value: 'irregular'}, {label: 'Not sure', value: 'not_sure'}] },
-    { id: 'pain', text: 'Period pain?', type: 'select', options: [{label: 'Low', value: 'low'}, {label: 'Medium', value: 'medium'}, {label: 'High', value: 'high'}] },
-    { id: 'conditions', text: 'Health conditions', type: 'multi', options: [{label: 'Low sleep', value: 'low_sleep'}, {label: 'Insomnia', value: 'insomnia'}, {label: 'PCOD', value: 'pcod'}, {label: 'PCOS', value: 'pcos'}, {label: 'None', value: 'none'}] },
-    { id: 'energy', text: 'Energy level?', type: 'select', options: [{label: 'Low', value: 'low'}, {label: 'Normal', value: 'normal'}, {label: 'High', value: 'high'}] },
-    { id: 'stress_level', text: 'Stress level?', type: 'select', options: [{label: 'Low', value: 'low'}, {label: 'Moderate', value: 'moderate'}, {label: 'High', value: 'high'}] },
-    { id: 'physical_activity', text: 'Physical Activity?', type: 'select', options: [{label: 'Rare', value: 'rare'}, {label: 'Moderate', value: 'moderate'}, {label: 'Active', value: 'active'}] },
-    { id: 'diet_quality', text: 'Dietary habits', type: 'select', options: [{label: 'Healthy', value: 'healthy'}, {label: 'Average', value: 'average'}, {label: 'Poor', value: 'poor'}] }
+    { id: 'height_cm', text: 'What is your height? (cm)', type: 'input', unit: 'cm', placeholder: 'e.g. 165' },
+    { id: 'Weight_kg', text: 'What is your weight? (kg)', type: 'input', unit: 'kg', placeholder: 'e.g. 60' },
+    { id: 'Last_Period_Start', text: 'When did your last period start?', type: 'date' },
+    { 
+      id: 'Avg_Cycle_Length_days', 
+      text: 'How long is your usual cycle?', 
+      type: 'select', 
+      options: [
+        {label: '21 days', value: '21'}, 
+        {label: '28 days', value: '28'}, 
+        {label: '35 days', value: '35'}, 
+        {label: 'Not sure', value: 'Not sure'}
+      ] 
+    },
+    { 
+      id: 'Bleeding_Duration_days', 
+      text: 'How many days does your period last?', 
+      type: 'select', 
+      options: [
+        {label: '1-3 days', value: '1-3'}, 
+        {label: '4-5 days', value: '4-5'}, 
+        {label: '6-7 days', value: '6-7'}, 
+        {label: '8+ days', value: '8+'}
+      ] 
+    },
+    { 
+      id: 'Flow_Intensity', 
+      text: 'How heavy is your flow?', 
+      type: 'select', 
+      options: [
+        {label: 'Light', value: 'Light'}, 
+        {label: 'Moderate', value: 'Moderate'}, 
+        {label: 'Heavy', value: 'Heavy'}, 
+        {label: 'Very Heavy', value: 'Very Heavy'}
+      ] 
+    },
+    { 
+      id: 'Periods_Regular', 
+      text: 'Are your periods regular?', 
+      type: 'select', 
+      options: [
+        {label: 'Yes', value: 'Yes'}, 
+        {label: 'No', value: 'No'}, 
+        {label: 'Sometimes', value: 'Sometimes'}
+      ] 
+    },
+    { 
+      id: 'Clotting', 
+      text: 'Do you experience clotting?', 
+      type: 'select', 
+      options: [{label: 'Yes', value: 'Yes'}, {label: 'No', value: 'No'}] 
+    },
+    { 
+      id: 'Pain_Level_1to5', 
+      text: 'How painful are your periods?', 
+      type: 'slider', 
+      min: 1, 
+      max: 5, 
+      defaultValue: 3 
+    },
+    { 
+      id: 'pcos_diagnosis', 
+      text: 'Have you been diagnosed with PCOS/PCOD?', 
+      type: 'select', 
+      options: [
+        {label: 'Yes', value: 'Yes'}, 
+        {label: 'No', value: 'No'}, 
+        {label: 'Not sure', value: 'Not sure'}
+      ] 
+    },
+    { 
+      id: 'Missed_Periods_Frequency', 
+      text: 'How often do you miss your period?', 
+      type: 'select', 
+      options: [
+        {label: 'Never', value: 'Never'}, 
+        {label: 'Occasionally', value: 'Occasionally'}, 
+        {label: 'Frequently', value: 'Frequently'}
+      ] 
+    },
+    { 
+      id: 'Difficulty_Losing_Weight', 
+      text: 'Do you find it hard to lose weight?', 
+      type: 'select', 
+      options: [{label: 'Yes', value: 'Yes'}, {label: 'No', value: 'No'}] 
+    },
+    { 
+      id: 'Hormonal_Contraceptive_Use', 
+      text: 'Are you on hormonal contraceptives?', 
+      type: 'select', 
+      options: [{label: 'Yes', value: 'Yes'}, {label: 'No', value: 'No'}] 
+    },
+    { 
+      id: 'Skin_Condition_During_Cycle', 
+      text: 'How is your skin during your cycle?', 
+      type: 'select', 
+      options: [
+        {label: 'Clear', value: 'Clear'}, 
+        {label: 'Mild breakout', value: 'Mild breakout'}, 
+        {label: 'Moderate breakout', value: 'Moderate breakout'}, 
+        {label: 'Severe breakout', value: 'Severe breakout'}
+      ] 
+    },
+    { 
+      id: 'Hair_Fall_Level', 
+      text: 'How much hair fall do you notice?', 
+      type: 'select', 
+      options: [
+        {label: 'None', value: 'None'}, 
+        {label: 'Mild', value: 'Mild'}, 
+        {label: 'Moderate', value: 'Moderate'}, 
+        {label: 'Severe', value: 'Severe'}
+      ] 
+    },
   ],
   pregnant: [
     { id: 'trimester', text: 'Trimester', type: 'select', options: [{label: '1st', value: '1st'}, {label: '2nd', value: '2nd'}, {label: '3rd', value: '3rd'}] },

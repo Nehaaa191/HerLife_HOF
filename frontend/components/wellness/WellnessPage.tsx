@@ -4,31 +4,15 @@ import React, { useState } from 'react';
 import { useRouter } from 'next/navigation';
 import { 
   Heart, 
-  Home, 
-  Calendar, 
-  Activity, 
-  BrainCircuit, 
-  BookOpen,
   Dumbbell,
   Apple,
-  Droplet,
   Moon
 } from 'lucide-react';
 import styles from './Wellness.module.css';
-import UserMenu from '../shared/UserMenu';
+import DashboardNavbar from '../shared/DashboardNavbar';
 
 export default function WellnessPage() {
   const router = useRouter();
-  const [glasses, setGlasses] = useState(4);
-  const maxGlasses = 8;
-
-  const handleAddGlass = () => {
-    if (glasses < maxGlasses) setGlasses(glasses + 1);
-  };
-
-  const handleRemoveGlass = () => {
-    if (glasses > 0) setGlasses(glasses - 1);
-  };
 
   const workouts = [
     'High-intensity interval training (HIIT)',
@@ -49,30 +33,7 @@ export default function WellnessPage() {
   return (
     <div className={styles.container}>
       {/* Navigation Bar */}
-      <nav className={styles.navbar}>
-        <div className={styles.logo}>
-          <Heart fill="currentColor" color="var(--primary)" size={28} />
-          HerLife
-        </div>
-        <div className={styles.navLinks}>
-          <button className={styles.navItem} onClick={() => router.push('/dashboard/young_women')}>
-            <Home size={20} /> Home
-          </button>
-          <button className={styles.navItem} onClick={() => router.push('/tracker')}>
-            <Calendar size={20} /> Tracker
-          </button>
-          <button className={`${styles.navItem} ${styles.navItemActive}`} onClick={() => {}}>
-            <Activity size={20} /> Wellness
-          </button>
-          <button className={styles.navItem} onClick={() => router.push('/pcos')}>
-            <Heart size={20} /> PCOS Support
-          </button>
-          <button className={styles.navItem} onClick={() => router.push('/learn')}>
-            <BookOpen size={20} /> Learn
-          </button>
-          <UserMenu />
-        </div>
-      </nav>
+      <DashboardNavbar activeTab="wellness" />
 
       {/* Main Content */}
       <main className={styles.content}>
@@ -142,58 +103,6 @@ export default function WellnessPage() {
             </div>
           </div>
         </div>
-
-        {/* Hydration Tracker */}
-        <div className={styles.card}>
-          <div className={styles.cardHeader}>
-            <Droplet color="#3B82F6" size={24} />
-            <h2 className={styles.cardTitle}>Hydration Tracker</h2>
-          </div>
-
-          <div className={styles.hydrationHeader}>
-            <div className={styles.hydrationLabel}>Today's Progress</div>
-            <div className={styles.hydrationCount}>{glasses} / {maxGlasses} glasses</div>
-          </div>
-
-          <div className={styles.progressBarContainer}>
-            <div 
-              className={styles.progressBarFill} 
-              style={{ width: `${(glasses / maxGlasses) * 100}%` }}
-            ></div>
-          </div>
-
-          <div className={styles.actionButtons}>
-            <button className={styles.addBtn} onClick={handleAddGlass}>
-              + Add Glass
-            </button>
-            <button className={styles.removeBtn} onClick={handleRemoveGlass}>
-              - Remove
-            </button>
-          </div>
-
-          <div className={styles.glassesGrid}>
-            {[...Array(maxGlasses)].map((_, index) => (
-              <div 
-                key={index} 
-                className={`${styles.glassBox} ${index < glasses ? styles.glassActive : styles.glassInactive}`}
-              >
-                <Droplet size={28} fill={index < glasses ? 'currentColor' : 'none'} />
-              </div>
-            ))}
-          </div>
-
-          <div className={`${styles.tipBox} ${styles.tipBoxBlue}`} style={{ marginTop: '0' }}>
-            <div className={styles.tipHeader}>
-              <Droplet size={18} fill="currentColor" /> Hydration Tips
-            </div>
-            <ul className={styles.tipList}>
-              <li>Drink more water during your period to reduce bloating</li>
-              <li>Aim for 8-10 glasses during ovulation for optimal hormone balance</li>
-              <li>Herbal teas count towards your daily intake!</li>
-            </ul>
-          </div>
-        </div>
-
       </main>
     </div>
   );

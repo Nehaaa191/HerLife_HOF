@@ -9,13 +9,19 @@ import {
   Calendar, 
   Activity, 
   BrainCircuit, 
-  BookOpen,
   Dumbbell,
   Apple,
   Droplet
 } from 'lucide-react';
 import styles from './YoungWomenDashboard.module.css';
-import UserMenu from '../shared/UserMenu';
+import DashboardNavbar from '../shared/DashboardNavbar';
+import ProfileBanner from './ProfileBanner';
+import ProfileCompletionModal from './ProfileCompletionModal';
+import { 
+  calculateBMI, 
+  calculateHormonalStressIndex, 
+  calculateWellnessScore 
+} from '../../utils/healthUtils';
 
 export default function YoungWomenDashboard({ userName }: { userName: string }) {
   const router = useRouter();
@@ -25,48 +31,80 @@ export default function YoungWomenDashboard({ userName }: { userName: string }) 
     currentPhase: 'Follicular Phase'
   });
 
-  // Calculate some mock data based on the onboarding data if needed
-  useEffect(() => {
-    const data = localStorage.getItem('herlife_onboarding');
-    if (data) {
+  const [showProfileModal, setShowProfileModal] = useState(false);
+  const [isProfileComplete, setIsProfileComplete] = useState(true);
+
+  const [metrics, setMetrics] = useState({
+    wellnessScore: 85,
+    stressIndex: 4,
+    bmi: 22.5
+  });
+
+  const loadHealthData = () => {
+    const onboarding = localStorage.getItem('herlife_onboarding');
+    const rawLogs = localStorage.getItem('herlife_logs');
+    const profileData = localStorage.getItem('herlife_profile_data');
+    
+    setIsProfileComplete(!!profileData);
+
+    if (onboarding) {
       try {
-        const parsed = JSON.parse(data);
-        // We could use the last_period date and cycle_length to calculate real numbers
-        // For now, keeping the static aesthetic from the design
+        const parsedOnboarding = JSON.parse(onboarding);
+        const logs = rawLogs ? JSON.parse(rawLogs) : [];
+        const latestLog = logs.length > 0 ? logs[logs.length - 1] : null;
+        const parsedProfile = profileData ? JSON.parse(profileData) : null;
+        
+        const height = parseFloat(parsedOnboarding.answers?.height_cm || 160);
+        const weight = parseFloat(parsedOnboarding.answers?.Weight_kg || 55);
+        const bmi = calculateBMI(height, weight) || 22.5;
+
+        // Use defaults but override with latest log OR profile data
+        let sleep = latestLog?.sleep || 4;
+        let mood = latestLog?.mood || 4;
+        let energy = latestLog?.energy === 'High' ? 5 : latestLog?.energy === 'Medium' ? 3 : 1;
+        let stress = latestLog?.stress || 3;
+        let junk = latestLog?.junkFood || 2;
+
+        // Overlay with Profile Data if available (and no latest log)
+        if (parsedProfile && !latestLog) {
+          sleep = parsedProfile.sleep === '7-9hrs' ? 4 : parsedProfile.sleep === '5-7hrs' ? 3 : 2;
+          junk = parsedProfile.junk === 'Never' ? 1 : parsedProfile.junk === 'Daily' ? 5 : 3;
+        }
+
+        const wellness = calculateWellnessScore(sleep, mood, energy, stress, junk);
+        const stressIdx = calculateHormonalStressIndex(stress, sleep);
+
+        setMetrics({
+          wellnessScore: wellness,
+          stressIndex: stressIdx,
+          bmi: bmi
+        });
       } catch (e) {}
     }
+  };
+
+  useEffect(() => {
+    loadHealthData();
   }, []);
+
+  const handleProfileComplete = (data: any) => {
+    localStorage.setItem('herlife_profile_data', JSON.stringify(data));
+    setIsProfileComplete(true);
+    setShowProfileModal(false);
+    loadHealthData(); // Refresh metrics
+  };
 
   return (
     <div className={styles.container}>
       {/* Navigation Bar */}
-      <nav className={styles.navbar}>
-        <div className={styles.logo}>
-          <Heart fill="currentColor" color="var(--primary)" size={28} />
-          HerLife
-        </div>
-        <div className={styles.navLinks}>
-          <button className={`${styles.navItem} ${styles.navItemActive}`} onClick={() => router.push('/dashboard/young_women')}>
-            <Home size={20} /> Home
-          </button>
-          <button className={styles.navItem} onClick={() => router.push('/tracker')}>
-            <Calendar size={20} /> Tracker
-          </button>
-          <button className={styles.navItem} onClick={() => router.push('/wellness')}>
-            <Activity size={20} /> Wellness
-          </button>
-          <button className={styles.navItem} onClick={() => router.push('/pcos')}>
-            <Heart size={20} /> PCOS Support
-          </button>
-          <button className={styles.navItem} onClick={() => router.push('/learn')}>
-            <BookOpen size={20} /> Learn
-          </button>
-          <UserMenu />
-        </div>
-      </nav>
+      <DashboardNavbar activeTab="home" />
 
       {/* Main Content */}
       <main className={styles.content}>
+        {!isProfileComplete && (
+          <ProfileBanner onOpenModal={() => setShowProfileModal(true)} />
+        )}
+
         {/* Hero Card */}
         <motion.div 
           className={styles.mainCard}
@@ -79,16 +117,16 @@ export default function YoungWomenDashboard({ userName }: { userName: string }) 
           
           <div className={styles.statsGrid}>
             <div className={styles.statBox}>
-              <div className={styles.statLabel}>Next Period In</div>
-              <div className={styles.statValue}>{cycleData.nextPeriod} days</div>
+              <div className={styles.statLabel}>Day of Cycle</div>
+              <div className={styles.statValue}>Day {cycleData.cycleDay}</div>
             </div>
             <div className={styles.statBox}>
-              <div className={styles.statLabel}>Cycle Day</div>
-              <div className={styles.statValue}>{cycleData.cycleDay}</div>
-            </div>
-            <div className={styles.statBox}>
-              <div className={styles.statLabel}>Current Phase</div>
+              <div className={styles.statLabel}>Phase you are in</div>
               <div className={styles.statValue}>{cycleData.currentPhase}</div>
+            </div>
+            <div className={styles.statBox}>
+              <div className={styles.statLabel}>Next Period Day</div>
+              <div className={styles.statValue}>In {cycleData.nextPeriod} Days</div>
             </div>
           </div>
         </motion.div>
@@ -127,20 +165,6 @@ export default function YoungWomenDashboard({ userName }: { userName: string }) 
             className={styles.actionCard}
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5, delay: 0.3 }}
-            onClick={() => console.log('Hydration Tracker clicked')}
-          >
-            <div className={styles.iconWrapper}>
-              <Droplet size={24} />
-            </div>
-            <h3>Hydration Tracker</h3>
-            <p>Stay hydrated throughout your cycle</p>
-          </motion.button>
-
-          <motion.button 
-            className={styles.actionCard}
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5, delay: 0.4 }}
             onClick={() => console.log('PCOS Support clicked')}
           >
@@ -170,14 +194,16 @@ export default function YoungWomenDashboard({ userName }: { userName: string }) 
               <div className={styles.recommendationTitle}>Focus on protein-rich foods</div>
               <div className={styles.recommendationSubtitle}>Your body needs extra nutrients now</div>
             </button>
-            <button className={styles.recommendationCard} onClick={() => console.log('Recommendation 3 clicked')}>
-              <div className={styles.recommendationDot}></div>
-              <div className={styles.recommendationTitle}>Drink 8-10 glasses of water today</div>
-              <div className={styles.recommendationSubtitle}>Hydration supports hormone balance</div>
-            </button>
           </div>
         </motion.div>
       </main>
+
+      {showProfileModal && (
+        <ProfileCompletionModal 
+          onClose={() => setShowProfileModal(false)}
+          onComplete={handleProfileComplete}
+        />
+      )}
     </div>
   );
 }
