@@ -1,0 +1,318 @@
+.container {
+  min-height: 100vh;
+  background-color: var(--background);
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+}
+
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem 2rem;
+  background-color: var(--card);
+  border-bottom: 1px solid var(--border);
+  box-shadow: 0 2px 10px rgba(0,0,0,0.02);
+}
+
+.logo {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 1.5rem;
+  font-weight: 600;
+  color: var(--primary);
+}
+
+.navLinks {
+  display: flex;
+  gap: 1.5rem;
+  align-items: center;
+}
+
+.navItem {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 1rem;
+  font-weight: 500;
+  color: var(--foreground-muted);
+  cursor: pointer;
+  padding: 0.5rem 1rem;
+  border-radius: 2rem;
+  transition: all 0.2s ease;
+  background: transparent;
+  border: none;
+  font-family: inherit;
+}
+
+.navItem:hover {
+  color: #2E7D32;
+}
+
+.navItemActive {
+  background-color: #C8E6C9;
+  color: #1B5E20;
+}
+
+.content {
+  flex: 1;
+  padding: 2rem;
+  max-width: 1200px;
+  margin: 0 auto;
+  width: 100%;
+}
+
+.card {
+  background-color: var(--card);
+  border-radius: 1.5rem;
+  padding: 2.5rem;
+  margin-bottom: 2rem;
+}
+
+.cardPinkBorder {
+  border: 1px solid var(--primary);
+}
+
+.cardGreenBorder {
+  border: 1px solid #81C784;
+}
+
+.sectionTitle {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  font-size: 1.5rem;
+  font-weight: 600;
+  margin-bottom: 1rem;
+}
+
+.sectionTitlePink {
+  color: var(--primary);
+}
+
+.sectionTitleDark {
+  color: #1F2937;
+}
+
+.heroDesc {
+  font-size: 1.1rem;
+  color: var(--foreground-muted);
+  line-height: 1.6;
+}
+
+/* Water Intake */
+.waterTrackerCard {
+  background-color: #E8F5E9;
+  border-radius: 1.5rem;
+  padding: 2rem;
+  text-align: center;
+  margin-bottom: 1.5rem;
+}
+
+.waterCount {
+  font-size: 3rem;
+  font-weight: 700;
+  color: var(--primary);
+  margin-bottom: 0.5rem;
+}
+
+.waterSub {
+  font-size: 1rem;
+  color: #374151;
+  margin-bottom: 2rem;
+}
+
+.waterBarBg {
+  background-color: #E5E7EB;
+  border-radius: 1rem;
+  height: 1.5rem;
+  width: 100%;
+  overflow: hidden;
+  margin-bottom: 1.5rem;
+}
+
+.waterBarFill {
+  background-color: #A5D6A7;
+  height: 100%;
+  transition: width 0.3s ease;
+}
+
+.waterActions {
+  display: flex;
+  gap: 1rem;
+}
+
+.waterBtnAdd {
+  flex: 3;
+  background-color: var(--primary);
+  color: white;
+  border: none;
+  border-radius: 2rem;
+  padding: 1rem;
+  font-size: 1.1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: opacity 0.2s;
+}
+
+.waterBtnAdd:hover {
+  opacity: 0.9;
+}
+
+.waterBtnRemove {
+  flex: 1;
+  background-color: white;
+  color: var(--primary);
+  border: 1px solid var(--primary);
+  border-radius: 2rem;
+  padding: 1rem;
+  font-size: 1.1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background-color 0.2s;
+}
+
+.waterBtnRemove:hover {
+  background-color: #FFF1F2;
+}
+
+/* Mood Grid */
+.moodGrid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 1.5rem;
+  margin-top: 1.5rem;
+}
+
+.moodBtn {
+  background-color: #F5E6D3;
+  border: none;
+  border-radius: 1rem;
+  padding: 1.5rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.5rem;
+  cursor: pointer;
+  transition: transform 0.2s, background-color 0.2s;
+}
+
+.moodBtn:hover {
+  transform: translateY(-2px);
+  background-color: #FDE68A;
+}
+
+.moodBtnActive {
+  background-color: #FEF08A; /* Active highlight */
+  border: 2px solid #F59E0B;
+}
+
+.moodEmoji {
+  font-size: 2rem;
+}
+
+.moodLabel {
+  font-weight: 600;
+  color: #1F2937;
+  font-size: 1rem;
+}
+
+/* Symptoms Grid */
+.symptomsGrid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1.5rem;
+  margin-top: 1.5rem;
+}
+
+.symptomBtn {
+  background-color: white;
+  border: 1px solid #C8E6C9;
+  border-radius: 1rem;
+  padding: 1.5rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.5rem;
+  cursor: pointer;
+  transition: transform 0.2s, box-shadow 0.2s, border-color 0.2s;
+}
+
+.symptomBtn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+}
+
+.symptomBtnActive {
+  border: 2px solid var(--primary);
+  background-color: #FFF1F2;
+}
+
+.symptomEmoji {
+  font-size: 2rem;
+}
+
+.symptomLabel {
+  font-weight: 600;
+  color: #1F2937;
+  font-size: 1rem;
+}
+
+/* Daily Notes */
+.notesArea {
+  width: 100%;
+  min-height: 150px;
+  border: 1px solid #E5E7EB;
+  border-radius: 1rem;
+  padding: 1.5rem;
+  font-size: 1rem;
+  font-family: inherit;
+  resize: vertical;
+  margin-top: 1.5rem;
+  transition: border-color 0.2s;
+}
+
+.notesArea:focus {
+  outline: none;
+  border-color: #81C784;
+  box-shadow: 0 0 0 3px rgba(129, 199, 132, 0.2);
+}
+
+/* Save Button */
+.saveBtn {
+  width: 100%;
+  background-color: #E6A8A8; /* Soft pink block */
+  color: white;
+  border: none;
+  border-radius: 1.5rem;
+  padding: 1.5rem;
+  font-size: 1.25rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background-color 0.2s;
+  margin-bottom: 2rem;
+}
+
+.saveBtn:hover {
+  background-color: var(--primary);
+}
+
+@media (max-width: 900px) {
+  .moodGrid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  .symptomsGrid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  .waterActions {
+    flex-direction: column;
+  }
+}
+
+@media (max-width: 768px) {
+  .navLinks {
+    display: none;
+  }
+}

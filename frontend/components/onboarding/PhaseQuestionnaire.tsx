@@ -100,26 +100,34 @@ export default function PhaseQuestionnaire({ phase }: { phase: string }) {
         )}
 
         {question.type === 'multi' && (
-          <div className={styles.optionsGrid}>
-            {question.options?.map((opt) => {
-              const currentList = answers[question.id] || [];
-              const isActive = currentList.includes(opt.value);
-              return (
-                <button
-                  key={opt.value}
-                  className={`${styles.optionBtn} ${isActive ? styles.optionBtnActive : ''}`}
-                  onClick={() => {
-                    const newList = isActive 
-                      ? currentList.filter((v: string) => v !== opt.value)
-                      : [...currentList, opt.value];
-                    updateAnswer(question.id, newList);
-                  }}
-                >
-                  {opt.label}
-                </button>
-              );
-            })}
-            <button className={styles.nextBtn} onClick={handleNext}>Continue</button>
+          <div className={styles.stepContent}>
+            <div className={styles.optionsGrid}>
+              {question.options?.map((opt) => {
+                const currentList = answers[question.id] || [];
+                const isActive = currentList.includes(opt.value);
+                return (
+                  <button
+                    key={opt.value}
+                    className={`${styles.optionBtn} ${isActive ? styles.optionBtnActive : ''}`}
+                    onClick={() => {
+                      const newList = isActive 
+                        ? currentList.filter((v: string) => v !== opt.value)
+                        : [...currentList, opt.value];
+                      updateAnswer(question.id, newList);
+                    }}
+                  >
+                    {opt.label}
+                  </button>
+                );
+              })}
+            </div>
+            <button 
+              className={styles.nextBtn} 
+              onClick={handleNext}
+              style={{marginTop: '1.5rem'}}
+            >
+              Next
+            </button>
           </div>
         )}
 

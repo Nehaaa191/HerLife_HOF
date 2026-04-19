@@ -6,6 +6,7 @@ import { useRouter } from 'next/navigation';
 //import styles from '../../welcome/Welcome.module.css';
 import YoungWomenDashboard from './YoungWomenDashboard';
 import PostpartumDashboard from './PostpartumDashboard';
+import PregnantDashboard from './PregnantDashboard';
 
 export default function PhaseDashboard({ phase }: { phase: string }) {
   const [name, setName] = useState('');
@@ -27,6 +28,10 @@ export default function PhaseDashboard({ phase }: { phase: string }) {
 
   if (phase === 'postpartum') {
     return <PostpartumDashboard userName={name} />;
+  }
+
+  if (phase === 'pregnant') {
+    return <PregnantDashboard userName={name} />;
   }
 
   const phaseTitle = phase.charAt(0).toUpperCase() + phase.slice(1);
