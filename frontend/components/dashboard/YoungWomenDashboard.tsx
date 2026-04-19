@@ -46,7 +46,7 @@ export default function YoungWomenDashboard({ userName }: { userName: string }) 
           HerLife
         </div>
         <div className={styles.navLinks}>
-          <button className={`${styles.navItem} ${styles.navItemActive}`} onClick={() => router.push('/')}>
+          <button className={`${styles.navItem} ${styles.navItemActive}`} onClick={() => router.push('/dashboard/young_women')}>
             <Home size={20} /> Home
           </button>
           <button className={styles.navItem} onClick={() => router.push('/tracker')}>
