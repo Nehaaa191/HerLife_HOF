@@ -62,12 +62,11 @@ export const PHASE_FLOWS: Record<string, Question[]> = {
     { id: 'support_system', text: 'Do you have support at home?', type: 'select', options: [{label: 'Yes, lots', value: 'lots'}, {label: 'Some', value: 'some'}, {label: 'Little to none', value: 'none'}] }
   ],
   menopause: [
-    { id: 'stage', text: 'Stage', type: 'select', options: [{label: 'Perimenopause', value: 'peri'}, {label: 'Postmenopause', value: 'post'}] },
-    { id: 'hot_flashes', text: 'Hot flashes?', type: 'select', options: [{label: 'Yes', value: 'yes'}, {label: 'No', value: 'no'}] },
-    { id: 'sleep', text: 'Sleep quality', type: 'select', options: [{label: 'Poor', value: 'poor'}, {label: 'Okay', value: 'okay'}, {label: 'Good', value: 'good'}] },
-    { id: 'mood_changes', text: 'Mood changes?', type: 'select', options: [{label: 'Yes', value: 'yes'}, {label: 'No', value: 'no'}] },
-    { id: 'energy', text: 'Energy', type: 'select', options: [{label: 'Low', value: 'low'}, {label: 'Medium', value: 'medium'}, {label: 'High', value: 'high'}] },
-    { id: 'joint_pain', text: 'Joint pain or discomfort?', type: 'select', options: [{label: 'None', value: 'none'}, {label: 'Mild', value: 'mild'}, {label: 'Severe', value: 'severe'}] },
-    { id: 'memory_focus', text: 'Memory or focus issues?', type: 'select', options: [{label: 'None', value: 'none'}, {label: 'Occasionally', value: 'occasionally'}, {label: 'Frequently', value: 'frequently'}] }
+    { id: 'last_period', text: 'When was your last period?', type: 'date' },
+    { id: 'stage', text: 'Where are you in your journey?', type: 'select', options: [{label: 'Perimenopause', value: 'Perimenopause'}, {label: 'Menopause', value: 'Transitioning'}, {label: 'Postmenopause', value: 'Postmenopause'}] },
+    { id: 'hot_flashes', text: 'Do you experience hot flashes?', type: 'select', options: [{label: 'Rarely', value: 'rarely'}, {label: 'Sometimes', value: 'sometimes'}, {label: 'Frequently', value: 'frequently'}] },
+    { id: 'sleep', text: 'How has your sleep been?', type: 'select', options: [{label: 'Interrupted', value: 'interrupted'}, {label: 'Normal', value: 'normal'}, {label: 'Deep sleep', value: 'deep'}] },
+    { id: 'mood_changes', text: 'Notice any mood swings?', type: 'select', options: [{label: 'Yes, often', value: 'yes'}, {label: 'Occasionally', value: 'occasionally'}, {label: 'No', value: 'no'}] },
+    { id: 'energy', text: 'Energy level?', type: 'select', options: [{label: 'Low', value: 'low'}, {label: 'Moderate', value: 'moderate'}, {label: 'High', value: 'high'}] }
   ],
 };
