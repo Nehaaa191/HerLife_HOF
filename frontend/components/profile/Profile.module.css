@@ -46,30 +46,30 @@
 .card {
   background-color: white;
   border-radius: 1.5rem;
-  padding: 2.5rem;
+  padding: 2rem;
   box-shadow: 0 4px 15px rgba(0,0,0,0.03);
-  margin-bottom: 2rem;
+  margin-bottom: 1.5rem;
 }
 
 .profileHeader {
   display: flex;
   align-items: center;
   gap: 1.5rem;
-  margin-bottom: 2.5rem;
-  padding-bottom: 2rem;
+  margin-bottom: 1.5rem;
+  padding-bottom: 1.5rem;
   border-bottom: 1px solid #E5E7EB;
 }
 
 .avatar {
-  width: 80px;
-  height: 80px;
-  background-color: var(--bg-soft);
-  color: var(--primary);
+  width: 72px;
+  height: 72px;
+  background: linear-gradient(135deg, var(--primary), #F472B6);
+  color: white;
   border-radius: 50%;
   display: flex;
   align-items: center;
   justify-content: center;
-  font-size: 2.5rem;
+  font-size: 2rem;
   font-weight: 700;
 }
 
@@ -79,19 +79,51 @@
 }
 
 .userName {
-  font-size: 1.8rem;
+  font-size: 1.6rem;
   font-weight: 700;
   color: #1F2937;
 }
 
 .userPhase {
-  font-size: 1.1rem;
+  font-size: 1rem;
   color: var(--primary);
   font-weight: 500;
 }
 
+/* Quick Stats */
+.quickStats {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 1rem;
+}
+
+.quickStat {
+  text-align: center;
+  padding: 1rem 0.5rem;
+  background: #FDF2F8;
+  border-radius: 1rem;
+}
+
+.quickStatLabel {
+  display: block;
+  font-size: 0.8rem;
+  color: #9CA3AF;
+  font-weight: 500;
+  margin-bottom: 0.3rem;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.quickStatValue {
+  display: block;
+  font-size: 1.1rem;
+  font-weight: 700;
+  color: #1F2937;
+}
+
+/* Section Title */
 .sectionTitle {
-  font-size: 1.3rem;
+  font-size: 1.2rem;
   font-weight: 700;
   color: #1F2937;
   margin-bottom: 1.5rem;
@@ -100,34 +132,197 @@
   gap: 0.5rem;
 }
 
+/* Data Grid */
 .dataGrid {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
-  gap: 1.5rem;
+  grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+  gap: 1rem;
 }
 
 .dataItem {
   background-color: #F9FAFB;
-  border: 1px solid #E5E7EB;
+  border: 1px solid #F3F4F6;
   padding: 1.25rem;
   border-radius: 1rem;
 }
 
 .dataLabel {
-  font-size: 0.9rem;
-  color: #6B7280;
-  margin-bottom: 0.5rem;
+  font-size: 0.85rem;
+  color: #9CA3AF;
+  margin-bottom: 0.4rem;
   font-weight: 500;
 }
 
 .dataValue {
-  font-size: 1.1rem;
+  font-size: 1.05rem;
   color: #1F2937;
   font-weight: 600;
 }
 
+/* Prediction Grid */
+.predictionGrid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 1rem;
+}
+
+.predictionItem {
+  background: linear-gradient(135deg, #FDF2F8, #FCE7F3);
+  border-radius: 1rem;
+  padding: 1.25rem;
+  text-align: center;
+}
+
+.predictionIcon {
+  font-size: 1.8rem;
+  margin-bottom: 0.4rem;
+}
+
+.predictionLabel {
+  font-size: 0.8rem;
+  color: #9CA3AF;
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  margin-bottom: 0.3rem;
+}
+
+.predictionValue {
+  font-size: 1.2rem;
+  font-weight: 700;
+  color: #1F2937;
+}
+
+/* Empty State */
+.emptyState {
+  text-align: center;
+  padding: 3rem 1rem;
+  color: #9CA3AF;
+}
+
+.emptyState p {
+  margin-top: 1rem;
+  font-size: 1rem;
+}
+
+/* History List */
+.historyList {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.historyItem {
+  display: flex;
+  align-items: center;
+  gap: 1.25rem;
+  padding: 1rem 1.25rem;
+  background: #FAFAFA;
+  border: 1px solid #F3F4F6;
+  border-radius: 1rem;
+  transition: all 0.2s;
+}
+
+.historyItem:hover {
+  background: #FDF2F8;
+  border-color: #FBCFE8;
+}
+
+.historyDate {
+  min-width: 48px;
+  text-align: center;
+  flex-shrink: 0;
+}
+
+.historyDateDay {
+  font-size: 1.4rem;
+  font-weight: 800;
+  color: var(--primary);
+  line-height: 1;
+}
+
+.historyDateMonth {
+  font-size: 0.75rem;
+  color: #9CA3AF;
+  font-weight: 500;
+  text-transform: uppercase;
+}
+
+.historyContent {
+  flex: 1;
+  min-width: 0;
+}
+
+.historyMetrics {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+  align-items: center;
+}
+
+.historyMetric {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.3rem;
+  font-size: 0.85rem;
+  color: #4B5563;
+  font-weight: 500;
+  background: white;
+  padding: 0.25rem 0.6rem;
+  border-radius: 0.5rem;
+  border: 1px solid #E5E7EB;
+}
+
+.periodBadge {
+  display: inline-block;
+  margin-top: 0.4rem;
+  font-size: 0.8rem;
+  color: #EF4444;
+  font-weight: 600;
+  background: #FEF2F2;
+  padding: 0.2rem 0.6rem;
+  border-radius: 0.5rem;
+}
+
+/* Mini Bar Chart */
+.historyBars {
+  display: flex;
+  gap: 4px;
+  align-items: flex-end;
+  height: 40px;
+  flex-shrink: 0;
+}
+
+.miniBar {
+  width: 8px;
+  height: 100%;
+  background: #F3F4F6;
+  border-radius: 4px;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+}
+
+.miniBarFill {
+  border-radius: 4px;
+  transition: height 0.5s ease;
+}
+
 @media (max-width: 600px) {
+  .quickStats {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  .predictionGrid {
+    grid-template-columns: 1fr;
+  }
   .dataGrid {
     grid-template-columns: 1fr;
+  }
+  .historyMetrics {
+    gap: 0.4rem;
+  }
+  .historyBars {
+    display: none;
   }
 }

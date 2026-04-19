@@ -14,18 +14,15 @@ export default function OnboardingFlow() {
 
   // Step 0: Name
   // Step 1: Phase Selection
-  
+
   const totalSteps = 2;
   const progress = ((step + 1) / totalSteps) * 100;
 
   useEffect(() => {
-    // Load name if already set
-    const existing = localStorage.getItem('herlife_onboarding');
-    if (existing) {
-      try {
-        const parsed = JSON.parse(existing);
-        if (parsed.userName) setUserName(parsed.userName);
-      } catch(e) {}
+    // Load name from user_name local storage key set during signup/login
+    const savedName = localStorage.getItem('user_name');
+    if (savedName) {
+      setUserName(savedName);
     }
   }, []);
 
@@ -41,18 +38,37 @@ export default function OnboardingFlow() {
     }
   };
 
-  const handlePhaseSelection = (phaseValue: string) => {
-    // Save state
+  const handlePhaseSelection = async (phaseValue: string) => {
+    // Save to localStorage as before
     const existing = localStorage.getItem('herlife_onboarding');
     let data = { userName, selectedPhase: phaseValue, answers: {} };
     if (existing) {
       try {
         data = { ...JSON.parse(existing), userName, selectedPhase: phaseValue };
-      } catch(e) {}
+      } catch (e) { }
     }
     localStorage.setItem('herlife_onboarding', JSON.stringify(data));
-    
-    // Navigate to phase questionnaire
+    localStorage.setItem('life_phase', phaseValue); // save phase separately
+
+    // ── NEW: Update life phase in Supabase ──
+    const user_id = localStorage.getItem('user_id');
+    if (user_id) {
+      try {
+        await fetch('http://127.0.0.1:5000/api/update-phase', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({
+            user_id: user_id,
+            life_phase: phaseValue,
+            name: userName,
+          })
+        });
+      } catch (e) {
+        console.error('Could not save phase:', e);
+      }
+    }
+
+    // Navigate to phase questionnaire as before
     router.push(`/onboarding/${phaseValue}`);
   };
 
@@ -61,16 +77,16 @@ export default function OnboardingFlow() {
       return (
         <div className={styles.stepContent}>
           <h2 className={styles.question}>What should we call you?</h2>
-          <input 
-            type="text" 
-            className={styles.inputField} 
+          <input
+            type="text"
+            className={styles.inputField}
             placeholder="Your name"
             value={userName}
             onChange={(e) => setUserName(e.target.value)}
             autoFocus
           />
-          <button 
-            className={styles.nextBtn} 
+          <button
+            className={styles.nextBtn}
             onClick={handleNext}
             disabled={!userName.trim()}
           >

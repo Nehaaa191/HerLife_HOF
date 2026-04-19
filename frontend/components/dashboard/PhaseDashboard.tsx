@@ -15,6 +15,14 @@ export default function PhaseDashboard({ phase }: { phase: string }) {
   const router = useRouter();
 
   useEffect(() => {
+    // Priority 1: Check session data from login
+    const sessionName = localStorage.getItem('user_name');
+    if (sessionName) {
+      setName(sessionName);
+      return;
+    }
+
+    // Priority 2: Check onboarding data
     const data = localStorage.getItem('herlife_onboarding');
     if (data) {
       try {

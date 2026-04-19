@@ -26,60 +26,77 @@ import {
 export default function YoungWomenDashboard({ userName }: { userName: string }) {
   const router = useRouter();
   const [cycleData, setCycleData] = useState({
-    nextPeriod: 12,
-    cycleDay: 8,
-    currentPhase: 'Follicular Phase'
+    nextPeriod: 0,
+    cycleDay: 1,
+    currentPhase: 'Analyzing...'
   });
+  const [displayedName, setDisplayedName] = useState(userName);
 
   const [showProfileModal, setShowProfileModal] = useState(false);
-  const [isProfileComplete, setIsProfileComplete] = useState(true);
+  const [isProfileComplete, setIsProfileComplete] = useState(false);
 
   const [metrics, setMetrics] = useState({
-    wellnessScore: 85,
-    stressIndex: 4,
-    bmi: 22.5
+    wellnessScore: 0,
+    stressIndex: 0,
+    bmi: 0,
+    riskScore: 0
   });
 
-  const loadHealthData = () => {
-    const onboarding = localStorage.getItem('herlife_onboarding');
-    const rawLogs = localStorage.getItem('herlife_logs');
-    const profileData = localStorage.getItem('herlife_profile_data');
-    
-    setIsProfileComplete(!!profileData);
+  const [recommendations, setRecommendations] = useState<any[]>([]);
+  const [loading, setLoading] = useState(true);
 
-    if (onboarding) {
-      try {
-        const parsedOnboarding = JSON.parse(onboarding);
-        const logs = rawLogs ? JSON.parse(rawLogs) : [];
-        const latestLog = logs.length > 0 ? logs[logs.length - 1] : null;
-        const parsedProfile = profileData ? JSON.parse(profileData) : null;
-        
-        const height = parseFloat(parsedOnboarding.answers?.height_cm || 160);
-        const weight = parseFloat(parsedOnboarding.answers?.Weight_kg || 55);
-        const bmi = calculateBMI(height, weight) || 22.5;
+  const loadHealthData = async () => {
+    const userId = localStorage.getItem('user_id');
+    if (!userId) {
+      router.push('/login');
+      return;
+    }
 
-        // Use defaults but override with latest log OR profile data
-        let sleep = latestLog?.sleep || 4;
-        let mood = latestLog?.mood || 4;
-        let energy = latestLog?.energy === 'High' ? 5 : latestLog?.energy === 'Medium' ? 3 : 1;
-        let stress = latestLog?.stress || 3;
-        let junk = latestLog?.junkFood || 2;
+    try {
+      setLoading(true);
+      
+      // 1. Fetch Dashboard Data (Metrics + Predictions)
+      const dashRes = await fetch(`http://127.0.0.1:5000/api/dashboard-data/${userId}`);
+      const dashData = await dashRes.json();
 
-        // Overlay with Profile Data if available (and no latest log)
-        if (parsedProfile && !latestLog) {
-          sleep = parsedProfile.sleep === '7-9hrs' ? 4 : parsedProfile.sleep === '5-7hrs' ? 3 : 2;
-          junk = parsedProfile.junk === 'Never' ? 1 : parsedProfile.junk === 'Daily' ? 5 : 3;
+      if (dashData.error) {
+        if (dashData.error === "Profile incomplete") {
+          setIsProfileComplete(false);
         }
+      } else {
+        if (dashData.userName) {
+          setDisplayedName(dashData.userName);
+        }
+      }
 
-        const wellness = calculateWellnessScore(sleep, mood, energy, stress, junk);
-        const stressIdx = calculateHormonalStressIndex(stress, sleep);
+      // 2. Profile Sync
+      if (dashData.needs_details !== undefined) {
+        setIsProfileComplete(!dashData.needs_details);
+      }
 
-        setMetrics({
-          wellnessScore: wellness,
-          stressIndex: stressIdx,
-          bmi: bmi
-        });
-      } catch (e) {}
+      // 3. Update basic metrics (Always update cycleDay if present)
+      setCycleData({
+        nextPeriod:   dashData.prediction?.days_until_period ?? 0,
+        cycleDay:     dashData.cycleDay || 1,
+        currentPhase: dashData.prediction?.cycle_phase || 'Follicular'
+      });
+
+      setMetrics({
+        wellnessScore: 80, 
+        stressIndex:   3,
+        bmi:           dashData.wellness?.bmi || 0,
+        riskScore:     dashData.wellness?.riskScore || 0
+      });
+
+      // 3. Fetch Recommendations
+      const RecRes  = await fetch(`http://127.0.0.1:5000/api/recommendations/${userId}`);
+      const RecData = await RecRes.json();
+      setRecommendations(RecData.recommendations || []);
+
+    } catch (e) {
+      console.error("Failed to load dashboard data:", e);
+    } finally {
+      setLoading(false);
     }
   };
 
@@ -87,12 +104,45 @@ export default function YoungWomenDashboard({ userName }: { userName: string }) 
     loadHealthData();
   }, []);
 
-  const handleProfileComplete = (data: any) => {
-    localStorage.setItem('herlife_profile_data', JSON.stringify(data));
-    setIsProfileComplete(true);
-    setShowProfileModal(false);
-    loadHealthData(); // Refresh metrics
+  const handleProfileComplete = async (data: any) => {
+    const userId = localStorage.getItem('user_id');
+    if (!userId) return;
+
+    try {
+      // Map frontend strings to backend expectations
+      const mappedData = {
+        user_id: userId,
+        exercise_frequency:  data.exercise, // Backend ordinal_map handles "Never", "Sometimes", etc.
+        sleep_duration:      data.sleep,
+        junk_food_frequency: data.junk === 'Never' ? 1 : data.junk === 'Rarely' ? 2 : data.junk === 'Sometimes' ? 3 : data.junk === 'Often' ? 4 : 5,
+        sugar_intake:        data.sugar === 'Never' ? 1 : data.sugar === 'Rarely' ? 2 : data.sugar === 'Sometimes' ? 3 : data.sugar === 'Often' ? 4 : 5,
+        caffeine_intake:     data.caffeine,
+        water_intake:        data.water === 'Less than 1L' ? 0.5 : data.water === '1-2L' ? 1.5 : data.water === '2-3L' ? 2.5 : 3.5,
+      };
+
+      const response = await fetch('http://127.0.0.1:5000/api/profile', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(mappedData)
+      });
+
+      if (response.ok) {
+        setIsProfileComplete(true);
+        setShowProfileModal(false);
+        loadHealthData(); // Refresh metrics
+      }
+    } catch (e) {
+      console.error("Failed to save profile:", e);
+    }
   };
+
+  if (loading) {
+    return (
+      <div className={styles.container} style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', height: '100vh' }}>
+        <h2 style={{ color: 'white' }}>Analyzing your health data...</h2>
+      </div>
+    );
+  }
 
   return (
     <div className={styles.container}>
@@ -112,7 +162,7 @@ export default function YoungWomenDashboard({ userName }: { userName: string }) 
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.5 }}
         >
-          <h1>Welcome Back{userName ? `, ${userName}` : ''}!</h1>
+          <h1>Welcome Back{displayedName ? `, ${displayedName}` : ''}! 🌸</h1>
           <p>You're currently in your {cycleData.currentPhase}</p>
           
           <div className={styles.statsGrid}>
@@ -166,13 +216,16 @@ export default function YoungWomenDashboard({ userName }: { userName: string }) 
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5, delay: 0.4 }}
-            onClick={() => console.log('PCOS Support clicked')}
+            onClick={() => router.push('/pcos')}
           >
             <div className={styles.iconWrapper}>
               <BrainCircuit size={24} />
             </div>
             <h3>PCOS Support</h3>
-            <p>Manage PCOS symptoms effectively</p>
+            <p>Risk Score: {metrics.riskScore}%</p>
+            <span style={{ fontSize: '12px', color: metrics.riskScore > 50 ? '#ff6b6b' : '#4ecdc4' }}>
+              {metrics.riskScore > 50 ? 'High probability detected' : 'Low probability detected'}
+            </span>
           </motion.button>
         </div>
 
@@ -184,16 +237,17 @@ export default function YoungWomenDashboard({ userName }: { userName: string }) 
         >
           <h2 className={styles.sectionTitle}>Today's Recommendations</h2>
           <div className={styles.recommendationsList}>
-            <button className={styles.recommendationCard} onClick={() => console.log('Recommendation 1 clicked')}>
-              <div className={styles.recommendationDot}></div>
-              <div className={styles.recommendationTitle}>High-intensity workouts are great during this phase</div>
-              <div className={styles.recommendationSubtitle}>Try cardio or strength training</div>
-            </button>
-            <button className={styles.recommendationCard} onClick={() => console.log('Recommendation 2 clicked')}>
-              <div className={styles.recommendationDot}></div>
-              <div className={styles.recommendationTitle}>Focus on protein-rich foods</div>
-              <div className={styles.recommendationSubtitle}>Your body needs extra nutrients now</div>
-            </button>
+            {recommendations.length > 0 ? (
+              recommendations.map((rec, idx) => (
+                <button key={idx} className={styles.recommendationCard}>
+                  <div className={styles.recommendationDot} style={{ background: rec.type === 'fitness' ? '#ff6b6b' : rec.type === 'diet' ? '#4ecdc4' : '#ffe66d' }}></div>
+                  <div className={styles.recommendationTitle}>{rec.title}: {rec.content}</div>
+                  <div className={styles.recommendationSubtitle}>Based on your {cycleData.currentPhase}</div>
+                </button>
+              ))
+            ) : (
+              <p style={{ color: '#ccc' }}>Logging your daily symptoms will help us give better tips!</p>
+            )}
           </div>
         </motion.div>
       </main>

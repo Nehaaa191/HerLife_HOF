@@ -149,6 +149,52 @@ export const PHASE_FLOWS: Record<string, Question[]> = {
         {label: 'Severe', value: 'Severe'}
       ] 
     },
+    {
+      id: 'ML_SYM',
+      text: 'Do you experience any of these general symptoms? (Select all that apply)',
+      type: 'multi',
+      options: [
+        {label: 'Acne', value: 'SYM_Acne'},
+        {label: 'Back pain', value: 'SYM_Back_pain'},
+        {label: 'Bloating', value: 'SYM_Bloating'},
+        {label: 'Breast tenderness', value: 'SYM_Breast_tenderness'},
+        {label: 'Cramps', value: 'SYM_Cramps'},
+        {label: 'Fatigue', value: 'SYM_Fatigue'},
+        {label: 'Headaches', value: 'SYM_Headaches'},
+        {label: 'Hot flashes', value: 'SYM_Hot_flashes'},
+        {label: 'Joint pain', value: 'SYM_Joint_pain'},
+        {label: 'Mood Swings', value: 'SYM_Mood_Swings'},
+        {label: 'Nausea', value: 'SYM_Nausea'},
+        {label: 'Night sweats', value: 'SYM_Night_sweats'}
+      ]
+    },
+    {
+      id: 'ML_PMS',
+      text: 'Do you experience any of these PMS symptoms? (Select all that apply)',
+      type: 'multi',
+      options: [
+        {label: 'Anxiety', value: 'PMS_Anxiety'},
+        {label: 'Bloating', value: 'PMS_Bloating'},
+        {label: 'Breast tenderness', value: 'PMS_Breast_tenderness'},
+        {label: 'Depression', value: 'PMS_Depression'},
+        {label: 'Food Cravings', value: 'PMS_Food_Cravings'},
+        {label: 'Irritability', value: 'PMS_Irritability'},
+        {label: 'Sleep Disturbances', value: 'PMS_Sleep_Disturbances'}
+      ]
+    },
+    {
+      id: 'ML_PCOS_S',
+      text: 'Do you experience any of these PCOS-specific symptoms? (Select all that apply)',
+      type: 'multi',
+      options: [
+        {label: 'Dark patches on skin', value: 'PCOS_S_Dark_patches_on_skin'},
+        {label: 'Excess facial/body hair', value: 'PCOS_S_Excess_facial/body_hair'},
+        {label: 'Hair thinning', value: 'PCOS_S_Hair_thinning'},
+        {label: 'Irregular periods', value: 'PCOS_S_Irregular_periods'},
+        {label: 'Persistent acne', value: 'PCOS_S_Persistent_acne'},
+        {label: 'Sudden weight gain', value: 'PCOS_S_Sudden_weight_gain'}
+      ]
+    }
   ],
   pregnant: [
     { id: 'trimester', text: 'Trimester', type: 'select', options: [{label: '1st', value: '1st'}, {label: '2nd', value: '2nd'}, {label: '3rd', value: '3rd'}] },
