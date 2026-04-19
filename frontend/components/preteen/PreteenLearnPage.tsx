@@ -14,6 +14,7 @@ import {
   Play
 } from 'lucide-react';
 import styles from './PreteenLearn.module.css';
+import UserMenu from '../shared/UserMenu';
 
 export default function PreteenLearnPage() {
   const router = useRouter();
@@ -109,6 +110,7 @@ export default function PreteenLearnPage() {
           <button className={styles.navItem} onClick={() => router.push('/preteen/test')}>
             <HelpCircle size={20} /> Test It Out
           </button>
+          <UserMenu />
         </div>
       </nav>
 

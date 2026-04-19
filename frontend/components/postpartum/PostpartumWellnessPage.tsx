@@ -13,6 +13,7 @@ import {
   Apple
 } from 'lucide-react';
 import styles from './PostpartumWellness.module.css';
+import UserMenu from '../shared/UserMenu';
 
 export default function PostpartumWellnessPage() {
   const router = useRouter();
@@ -85,6 +86,7 @@ export default function PostpartumWellnessPage() {
           <button className={styles.navItem} onClick={() => router.push('/postpartum/mental-health')}>
             <Heart size={20} /> Mental Health
           </button>
+          <UserMenu />
         </div>
       </nav>
 

@@ -12,6 +12,7 @@ import {
   TrendingUp
 } from 'lucide-react';
 import styles from './CycleTracker.module.css';
+import UserMenu from '../shared/UserMenu';
 
 export default function CycleTracker() {
   const router = useRouter();
@@ -50,6 +51,7 @@ export default function CycleTracker() {
           <button className={styles.navItem} onClick={() => router.push('/learn')}>
             <BookOpen size={20} /> Learn
           </button>
+          <UserMenu />
         </div>
       </nav>
 

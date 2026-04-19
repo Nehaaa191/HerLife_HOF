@@ -12,6 +12,7 @@ import {
   Trophy
 } from 'lucide-react';
 import styles from './PreteenPlay.module.css';
+import UserMenu from '../shared/UserMenu';
 
 const GAME_LEVELS = [
   {
@@ -171,6 +172,7 @@ export default function PreteenPlayPage() {
           <button className={styles.navItem} onClick={() => router.push('/preteen/test')}>
             <HelpCircle size={20} /> Test It Out
           </button>
+          <UserMenu />
         </div>
       </nav>
 

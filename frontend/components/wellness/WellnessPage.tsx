@@ -15,6 +15,7 @@ import {
   Moon
 } from 'lucide-react';
 import styles from './Wellness.module.css';
+import UserMenu from '../shared/UserMenu';
 
 export default function WellnessPage() {
   const router = useRouter();
@@ -69,6 +70,7 @@ export default function WellnessPage() {
           <button className={styles.navItem} onClick={() => router.push('/learn')}>
             <BookOpen size={20} /> Learn
           </button>
+          <UserMenu />
         </div>
       </nav>
 

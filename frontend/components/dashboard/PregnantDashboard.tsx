@@ -12,6 +12,7 @@ import {
   Baby
 } from 'lucide-react';
 import styles from './PregnantDashboard.module.css';
+import UserMenu from '../shared/UserMenu';
 
 export default function PregnantDashboard({ userName }: { userName?: string }) {
   const router = useRouter();
@@ -60,6 +61,7 @@ export default function PregnantDashboard({ userName }: { userName?: string }) {
           <button className={styles.navItem} onClick={() => router.push('/pregnant/log')}>
             <FileText size={20} /> Daily Log
           </button>
+          <UserMenu />
         </div>
       </nav>
 

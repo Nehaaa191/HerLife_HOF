@@ -15,6 +15,7 @@ import {
   X
 } from 'lucide-react';
 import styles from './PreteenTest.module.css';
+import UserMenu from '../shared/UserMenu';
 
 const QUIZ_QUESTIONS = [
   {
@@ -125,6 +126,7 @@ export default function PreteenTestPage() {
           <button className={`${styles.navItem} ${styles.navItemActive}`} onClick={() => {}}>
             <HelpCircle size={20} /> Test It Out
           </button>
+          <UserMenu />
         </div>
       </nav>
 

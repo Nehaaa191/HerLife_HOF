@@ -11,6 +11,7 @@ import {
   HelpCircle 
 } from 'lucide-react';
 import styles from './PreteenDashboard.module.css';
+import UserMenu from '../shared/UserMenu';
 
 export default function PreteenDashboard({ userName }: { userName?: string }) {
   const router = useRouter();
@@ -47,6 +48,7 @@ export default function PreteenDashboard({ userName }: { userName?: string }) {
           <button className={styles.navItem} onClick={() => router.push('/preteen/test')}>
             <HelpCircle size={20} /> Test It Out
           </button>
+          <UserMenu />
         </div>
       </nav>
 

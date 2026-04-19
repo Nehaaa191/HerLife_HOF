@@ -12,6 +12,7 @@ import {
   Baby
 } from 'lucide-react';
 import styles from './PostpartumLog.module.css';
+import UserMenu from '../shared/UserMenu';
 
 export default function PostpartumLogPage() {
   const router = useRouter();
@@ -76,6 +77,7 @@ export default function PostpartumLogPage() {
           <button className={styles.navItem} onClick={() => router.push('/postpartum/mental-health')}>
             <Heart size={20} /> Mental Health
           </button>
+          <UserMenu />
         </div>
       </nav>
 

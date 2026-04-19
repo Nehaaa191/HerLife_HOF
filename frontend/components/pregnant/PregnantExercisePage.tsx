@@ -12,6 +12,7 @@ import {
   X
 } from 'lucide-react';
 import styles from './PregnantExercise.module.css';
+import UserMenu from '../shared/UserMenu';
 
 export default function PregnantExercisePage() {
   const router = useRouter();
@@ -165,6 +166,7 @@ export default function PregnantExercisePage() {
           <button className={styles.navItem} onClick={() => router.push('/pregnant/log')}>
             <FileText size={20} /> Daily Log
           </button>
+          <UserMenu />
         </div>
       </nav>
 
