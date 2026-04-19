@@ -27,7 +27,7 @@ export default function MenopauseDashboard({ userName }: { userName?: string }) 
           HerLife
         </div>
         <div className={styles.navLinks}>
-          <button className={styles.navItem} onClick={() => router.push('/')}>
+          <button className={styles.navItem} onClick={() => router.push('/dashboard/menopause')}>
             <Home size={20} /> Home
           </button>
           <button className={styles.navItem} onClick={() => router.push('/menopause/nutrition')}>
