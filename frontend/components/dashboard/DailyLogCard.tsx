@@ -27,23 +27,47 @@ export default function DailyLogCard({ onSave }: { onSave?: (data: any) => void 
   });
 
   const moods = ['😢', '😟', '😐', '🙂', '😊'];
+  const [loading, setLoading] = useState(false);
 
-  const handleSubmit = () => {
-    // Logic to save to localStorage
-    const existing = localStorage.getItem('herlife_logs');
-    const logs = existing ? JSON.parse(existing) : [];
-    const newLog = {
-      date: new Date().toISOString().split('T')[0],
-      ...log
-    };
-    
-    // Update or add for today
-    const updatedLogs = logs.filter((l: any) => l.date !== newLog.date);
-    updatedLogs.push(newLog);
-    
-    localStorage.setItem('herlife_logs', JSON.stringify(updatedLogs));
-    if (onSave) onSave(newLog);
-    alert('Daily log saved successfully! 🩷');
+  const handleSubmit = async () => {
+    const userId = localStorage.getItem('user_id');
+    if (!userId) {
+      alert("Please login first!");
+      return;
+    }
+
+    setLoading(true);
+    try {
+      const response = await fetch('http://127.0.0.1:5000/api/daily-log', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          user_id:        userId,
+          mood:           log.mood,
+          stress_level:   log.stress,
+          sleep_quality:  log.sleep,
+          water_glasses:  log.water,
+          period_started: log.periodStart,
+          energy_level:   log.energy,
+        })
+      });
+
+      const data = await response.json();
+
+      if (data.error) {
+        alert("Error saving log: " + data.error);
+        return;
+      }
+
+      // Success
+      if (onSave) onSave(data);
+      alert('Daily log saved! Your health insights are being updated... 🩷');
+      
+    } catch (err) {
+      alert("Failed to connect to backend. Is it running?");
+    } finally {
+      setLoading(false);
+    }
   };
 
   return (
@@ -171,7 +195,7 @@ export default function DailyLogCard({ onSave }: { onSave?: (data: any) => void 
             Yes
           </button>
           <button
-            className={`${styles.toggleBtn} {!log.periodStart ? styles.toggleBtnActive : ''}`}
+            className={`${styles.toggleBtn} ${!log.periodStart ? styles.toggleBtnActive : ''}`}
             onClick={() => setLog({ ...log, periodStart: false })}
           >
             No
@@ -179,8 +203,12 @@ export default function DailyLogCard({ onSave }: { onSave?: (data: any) => void 
         </div>
       </div>
 
-      <button className={styles.submitBtn} onClick={handleSubmit}>
-        Save Entry
+      <button 
+        className={styles.submitBtn} 
+        onClick={handleSubmit}
+        disabled={loading}
+      >
+        {loading ? 'Saving Health Data...' : 'Save Entry'}
       </button>
     </div>
   );

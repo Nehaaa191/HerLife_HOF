@@ -17,34 +17,70 @@ export default function PhaseQuestionnaire({ phase }: { phase: string }) {
   const progress = totalSteps > 0 ? ((step + 1) / totalSteps) * 100 : 100;
 
   useEffect(() => {
-    // Load existing answers if available
-    const existing = localStorage.getItem('herlife_onboarding');
-    if (existing) {
-      try {
-        const parsed = JSON.parse(existing);
-        if (parsed.answers) {
-          setAnswers(parsed.answers);
-        }
-      } catch (e) {}
-    }
+    // Removed: Loading existing answers from localStorage.
+    // The user wants a clean sheet every time they enter the questionnaire.
+    // Ensure we start fresh.
+    setAnswers({});
   }, []);
 
-  const handleNext = () => {
+  const handleNext = async () => {
     if (step < totalSteps - 1) {
       setStep(step + 1);
     } else {
-      // Save answers and finalize
-      const existing = localStorage.getItem('herlife_onboarding');
-      let data = { answers };
-      if (existing) {
-        try {
-          data = { ...JSON.parse(existing), answers };
-        } catch (e) {}
+      // Finalize and save to backend
+      const userId = localStorage.getItem('user_id');
+      if (!userId) {
+        router.push('/login');
+        return;
       }
-      localStorage.setItem('herlife_onboarding', JSON.stringify(data));
-      
-      // Navigate to final landing page for this phase
-      router.push(`/dashboard/${phase}`);
+
+      try {
+        // Collect symptom flags
+        const symList = answers.ML_SYM || [];
+        const pmsList = answers.ML_PMS || [];
+        const pcosList = answers.ML_PCOS_S || [];
+        
+        const combinedSymptomsList = [...symList, ...pmsList, ...pcosList];
+        const modelSymptomsObj: Record<string, number> = {};
+        combinedSymptomsList.forEach((sym: string) => {
+          modelSymptomsObj[sym] = 1;
+        });
+
+        // Map frontend answers to backend expectations
+        const mappedData = {
+          user_id:                  userId,
+          last_period_date:         answers.Last_Period_Start,
+          height_cm:                parseFloat(answers.height_cm),
+          weight_kg:                parseFloat(answers.Weight_kg),
+          cycle_length:             parseInt(answers.Avg_Cycle_Length_days),
+          flow_intensity:           answers.Flow_Intensity,
+          pcos_diagnosed:           answers.pcos_diagnosis,
+          periods_regular:          answers.Periods_Regular,
+          bleeding_duration:        parseInt(answers.Bleeding_Duration_days),
+          clotting:                 answers.Clotting,
+          pain_level:               parseInt(answers.Pain_Level_1to5),
+          missed_periods_frequency: answers.Missed_Periods_Frequency,
+          difficulty_losing_weight: answers.Difficulty_Losing_Weight,
+          hormonal_contraceptive:   answers.Hormonal_Contraceptive_Use,
+          skin_condition:           answers.Skin_Condition_During_Cycle,
+          hair_fall:                answers.Hair_Fall_Level,
+          model_symptoms:           modelSymptomsObj,
+        };
+
+        const response = await fetch('http://127.0.0.1:5000/api/onboarding', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify(mappedData)
+        });
+
+        // Always navigate to dashboard after attempt, even if backend had a minor issue
+        router.push(`/dashboard/${phase}`);
+
+      } catch (e) {
+        console.error("Failed to save onboarding data:", e);
+        // Fallback to local navigation
+        router.push(`/dashboard/${phase}`);
+      }
     }
   };
 

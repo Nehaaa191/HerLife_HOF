@@ -12,12 +12,15 @@ export default function Home() {
   const router = useRouter();
 
   const handleLogin = () => {
-    // For now, just redirect to onboarding
-    router.push('/onboarding');
+    const lifePhase = localStorage.getItem('life_phase');
+    if (lifePhase && lifePhase !== 'pending') {
+      router.push(`/dashboard/${lifePhase}`);
+    } else {
+      router.push('/onboarding');
+    }
   };
 
   const handleSignUp = () => {
-    // For now, just redirect to onboarding
     router.push('/onboarding');
   };
 
