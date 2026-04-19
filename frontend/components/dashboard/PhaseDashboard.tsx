@@ -7,6 +7,7 @@ import { useRouter } from 'next/navigation';
 import YoungWomenDashboard from './YoungWomenDashboard';
 import PostpartumDashboard from './PostpartumDashboard';
 import PregnantDashboard from './PregnantDashboard';
+import PreteenDashboard from './PreteenDashboard';
 
 export default function PhaseDashboard({ phase }: { phase: string }) {
   const [name, setName] = useState('');
@@ -21,6 +22,10 @@ export default function PhaseDashboard({ phase }: { phase: string }) {
       } catch (e) {}
     }
   }, []);
+
+  if (phase === 'preteen') {
+    return <PreteenDashboard userName={name} />;
+  }
 
   if (phase === 'young_women') {
     return <YoungWomenDashboard userName={name} />;
