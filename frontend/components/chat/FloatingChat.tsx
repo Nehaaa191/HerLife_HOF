@@ -32,31 +32,33 @@ export default function FloatingChat() {
     }
   }, [messages, isOpen, isThinking]);
 
-  const handleSend = () => {
+  const handleSend = async () => {
     if (!inputValue.trim() || isThinking) return;
 
     const userText = inputValue.trim();
-    setMessages(prev => [...prev, { role: 'user', content: userText }]);
+    const newMessages = [...messages, { role: 'user' as const, content: userText }];
+    setMessages(newMessages);
     setInputValue('');
     setIsThinking(true);
 
-    // Simulate AI thinking and responding
-    setTimeout(() => {
-      let aiResponse = "I hear you! It's completely normal to feel that way. Make sure you're drinking plenty of water and taking time to rest today. Do you have any specific questions about what you're experiencing?";
-      
-      // Simple keyword matching for a slightly more personalized fake response
-      const lowerText = userText.toLowerCase();
-      if (lowerText.includes('cramp') || lowerText.includes('pain')) {
-        aiResponse = "I'm sorry you're dealing with cramps! A warm heating pad or a gentle walk can sometimes help ease the pain. Would you like me to suggest some light stretches?";
-      } else if (lowerText.includes('tired') || lowerText.includes('sleep')) {
-        aiResponse = "Feeling tired is your body's way of asking for rest. Try to get 8-10 hours of sleep tonight and avoid screens right before bed. Want some tips on improving your sleep?";
-      } else if (lowerText.includes('thank')) {
-        aiResponse = "You're very welcome! I'm always here if you need to talk or have more questions. 💕";
-      }
+    try {
+      const response = await fetch('/api/chat', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ messages: newMessages })
+      });
 
-      setMessages(prev => [...prev, { role: 'ai', content: aiResponse }]);
+      if (response.ok) {
+        const data = await response.json();
+        setMessages(prev => [...prev, { role: 'ai', content: data.response }]);
+      } else {
+        setMessages(prev => [...prev, { role: 'ai', content: "I'm having trouble connecting right now. Please try again later." }]);
+      }
+    } catch (error) {
+      setMessages(prev => [...prev, { role: 'ai', content: "Something went wrong. Please check your connection." }]);
+    } finally {
       setIsThinking(false);
-    }, 1500);
+    }
   };
 
   const handleKeyDown = (e: React.KeyboardEvent<HTMLInputElement>) => {
@@ -85,8 +87,13 @@ export default function FloatingChat() {
             >
               {/* Header (Drag Handle) */}
               <div className={styles.chatHeader}>
-                <div className={styles.headerTitle}>
-                  <Bot size={20} /> HerLife AI
+                <div className={styles.headerTitle} style={{ display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
+                  <img 
+                    src="/chatbot_avatar.png" 
+                    alt="HerLife AI Avatar" 
+                    style={{ width: '28px', height: '28px', borderRadius: '50%', objectFit: 'cover' }} 
+                  />
+                  HerLife AI
                 </div>
                 <button className={styles.closeBtn} onClick={() => setIsOpen(false)} title="Close Chat">
                   <X size={20} />
