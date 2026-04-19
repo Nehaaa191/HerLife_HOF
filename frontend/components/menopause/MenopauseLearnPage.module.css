@@ -1,0 +1,340 @@
+.container {
+  min-height: 100vh;
+  background-color: #FFFBEB;
+  padding-bottom: 5rem;
+  font-family: inherit;
+}
+
+.navbar {
+  background: white;
+  padding: 1rem 5%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+  position: sticky;
+  top: 0;
+  z-index: 100;
+}
+
+.logo {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: #D14D72;
+}
+
+.navLinks {
+  display: flex;
+  gap: 1.5rem;
+}
+
+.navItem {
+  background: none;
+  border: none;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-weight: 500;
+  color: #6B7280;
+  cursor: pointer;
+  padding: 0.5rem 1rem;
+  border-radius: 999px;
+  transition: all 0.2s;
+}
+
+.navItemActive {
+  background: #D14D72;
+  color: white;
+}
+
+.navItem:hover:not(.navItemActive) {
+  background: #FCE7F3;
+  color: #D14D72;
+}
+
+.content {
+  max-width: 1200px;
+  margin: 2rem auto;
+  padding: 0 1.5rem;
+}
+
+/* Hero Card */
+.heroCard {
+  background: linear-gradient(135deg, #FF9EAA 0%, #D14D72 50%, #7E22CE 100%);
+  border-radius: 2rem;
+  padding: 2.5rem;
+  color: white;
+  margin-bottom: 2rem;
+  box-shadow: 0 10px 30px rgba(209, 77, 114, 0.2);
+}
+
+.heroTitle {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  font-size: 2rem;
+  font-weight: 800;
+  margin-bottom: 0.5rem;
+}
+
+.heroSubtitle {
+  font-size: 1.1rem;
+  opacity: 0.9;
+  font-weight: 500;
+}
+
+/* Section Cards */
+.card {
+  background: white;
+  border: 2px solid #FDF2F8;
+  border-radius: 2.5rem;
+  padding: 2.5rem;
+  margin-bottom: 2rem;
+  box-shadow: 0 4px 15px rgba(0,0,0,0.02);
+}
+
+.sectionHeader {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  margin-bottom: 1.5rem;
+  font-size: 1.5rem;
+  font-weight: 800;
+  color: #1F2937;
+}
+
+.sectionIcon {
+  color: #D14D72;
+}
+
+/* Stages Section */
+.stageList {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.stageCard {
+  background: #FFFBEB;
+  border: 2px solid #FEF3C7;
+  border-radius: 1.5rem;
+  padding: 2rem;
+  display: flex;
+  gap: 1.5rem;
+}
+
+.stageEmoji {
+  font-size: 2.5rem;
+  flex-shrink: 0;
+}
+
+.stageInfo h3 {
+  font-weight: 800;
+  font-size: 1.25rem;
+  color: #1F2937;
+  margin-bottom: 0.75rem;
+}
+
+.stageInfo p {
+  font-size: 0.95rem;
+  color: #4B5563;
+  line-height: 1.6;
+  margin-bottom: 0.5rem;
+}
+
+.stageInfo strong {
+  color: #1F2937;
+}
+
+/* Symptoms Grid */
+.symptomGrid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 1.5rem;
+}
+
+.symptomCard {
+  background: #FEFCE8; /* Pale yellow */
+  border-radius: 1.5rem;
+  padding: 1.5rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.symptomEmoji {
+  font-size: 2rem;
+}
+
+.symptomCard h3 {
+  font-weight: 800;
+  font-size: 1.1rem;
+  color: #1F2937;
+}
+
+.symptomCard p {
+  font-size: 0.9rem;
+  color: #4B5563;
+  line-height: 1.5;
+}
+
+/* Doctor Section */
+.doctorList {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.doctorItem {
+  padding: 1rem 1.5rem;
+  border-radius: 1rem;
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.doctorDot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: #D14D72;
+  flex-shrink: 0;
+}
+
+.doctorItem p {
+  font-weight: 500;
+  color: #4B5563;
+}
+
+.color1 { background-color: #FEF9C3; }
+.color2 { background-color: #FFEDD5; }
+
+/* HRT Section */
+.hrtBox {
+  background: #FEFCE8;
+  padding: 1.5rem;
+  border-radius: 1rem;
+  margin-bottom: 1.5rem;
+}
+
+.hrtBox h3 {
+  font-weight: 800;
+  margin-bottom: 0.5rem;
+  color: #1F2937;
+}
+
+.hrtGrid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1.5rem;
+}
+
+.benefitBox {
+  background: #FFEDD5;
+  border: 1px solid #FED7AA;
+  border-radius: 1.5rem;
+  padding: 1.5rem;
+}
+
+.riskBox {
+  background: #FDF2F8;
+  border: 1px solid #FCE7F3;
+  border-radius: 1.5rem;
+  padding: 1.5rem;
+}
+
+.hrtList {
+  list-style: none;
+  padding: 0;
+  margin-top: 0.75rem;
+}
+
+.hrtList li {
+  font-size: 0.9rem;
+  color: #4B5563;
+  margin-bottom: 0.4rem;
+  padding-left: 1.25rem;
+  position: relative;
+}
+
+.hrtList li::before {
+  content: "•";
+  position: absolute;
+  left: 0;
+  color: #D14D72;
+}
+
+/* Video Grid */
+.videoGrid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 1.5rem;
+}
+
+.videoCard {
+  background: #FEF9C3;
+  border-radius: 1.5rem;
+  padding: 1.5rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+  cursor: pointer;
+  transition: transform 0.2s;
+}
+
+.videoCard:hover {
+  transform: translateY(-5px);
+}
+
+.videoIcon {
+  color: #1F2937;
+}
+
+.videoCard h3 {
+  font-weight: 800;
+  font-size: 1rem;
+}
+
+.videoCard p {
+  font-size: 0.85rem;
+  color: #6B7280;
+}
+
+/* Footer Card */
+.footerCard {
+  background: white;
+  border: 2px solid #E5E7EB;
+  border-radius: 1.5rem;
+  padding: 2.5rem;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1rem;
+  margin-top: 2rem;
+}
+
+.footerIcon {
+  font-size: 2.5rem;
+}
+
+.footerCard h2 {
+  font-weight: 800;
+  font-size: 1.5rem;
+  color: #1F2937;
+}
+
+.footerCard p {
+  color: #6B7280;
+  max-width: 800px;
+  line-height: 1.6;
+}
+
+@media (max-width: 900px) {
+  .symptomGrid, .hrtGrid, .videoGrid {
+    grid-template-columns: 1fr;
+  }
+}

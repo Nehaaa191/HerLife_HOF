@@ -1,0 +1,280 @@
+.container {
+  min-height: 100vh;
+  background-color: #FFFBEB;
+  padding-bottom: 5rem;
+  font-family: inherit;
+}
+
+.navbar {
+  background: white;
+  padding: 1rem 5%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+  position: sticky;
+  top: 0;
+  z-index: 100;
+}
+
+.logo {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: #D14D72;
+}
+
+.navLinks {
+  display: flex;
+  gap: 1.5rem;
+}
+
+.navItem {
+  background: none;
+  border: none;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-weight: 500;
+  color: #6B7280;
+  cursor: pointer;
+  padding: 0.5rem 1rem;
+  border-radius: 999px;
+  transition: all 0.2s;
+}
+
+.navItemActive {
+  background: #D14D72;
+  color: white;
+}
+
+.navItem:hover:not(.navItemActive) {
+  background: #FCE7F3;
+  color: #D14D72;
+}
+
+.content {
+  max-width: 1200px;
+  margin: 2rem auto;
+  padding: 0 1.5rem;
+}
+
+/* Hero Card */
+.heroCard {
+  background: linear-gradient(135deg, #FB923C 0%, #E85B7A 100%);
+  border-radius: 2rem;
+  padding: 2.5rem;
+  color: white;
+  margin-bottom: 2rem;
+  box-shadow: 0 10px 30px rgba(232, 91, 122, 0.15);
+}
+
+.heroTitle {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  font-size: 2rem;
+  font-weight: 800;
+  margin-bottom: 0.5rem;
+}
+
+.heroSubtitle {
+  font-size: 1.1rem;
+  opacity: 0.9;
+  font-weight: 500;
+}
+
+/* Section Cards */
+.card {
+  background: white;
+  border: 2px solid #FDF2F8;
+  border-radius: 2.5rem;
+  padding: 2.5rem;
+  margin-bottom: 2rem;
+  box-shadow: 0 4px 15px rgba(0,0,0,0.02);
+}
+
+.sectionHeader {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  margin-bottom: 2rem;
+}
+
+.sectionHeader h2 {
+  font-size: 1.5rem;
+  font-weight: 800;
+  color: #1F2937;
+}
+
+.sectionIcon {
+  color: #E85B7A;
+}
+
+/* Food Grids */
+.foodGrid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 1.5rem;
+}
+
+.foodItem {
+  background: #FFF9F0;
+  border: 1.5px solid #FFEDD5;
+  border-radius: 1.5rem;
+  padding: 1.5rem;
+  display: flex;
+  gap: 1.25rem;
+}
+
+.checkIcon {
+  color: #10B981;
+  flex-shrink: 0;
+  margin-top: 0.25rem;
+}
+
+.foodInfo h3 {
+  font-weight: 800;
+  font-size: 1.1rem;
+  margin-bottom: 0.5rem;
+  color: #1F2937;
+}
+
+.foodInfo p {
+  font-size: 0.9rem;
+  color: #4B5563;
+  line-height: 1.5;
+}
+
+/* Calcium Section */
+.calciumText {
+  color: #6B7280;
+  margin-bottom: 1.5rem;
+  line-height: 1.6;
+}
+
+.calciumGrid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1.5rem;
+}
+
+.calciumCard {
+  background: #FFedd5;
+  border-radius: 2rem;
+  padding: 2rem;
+  text-align: center;
+  transition: transform 0.2s;
+}
+
+.calciumCard:hover {
+  transform: translateY(-5px);
+}
+
+.calciumEmoji {
+  font-size: 2.5rem;
+  margin-bottom: 1rem;
+  display: block;
+}
+
+.calciumCard h3 {
+  font-weight: 800;
+  color: #1F2937;
+  margin-bottom: 0.5rem;
+}
+
+.calciumCard p {
+  font-size: 0.9rem;
+  color: #4B5563;
+}
+
+/* Trigger Foods */
+.triggerItem {
+  background: #FFF9F0;
+  border: 1.5px solid #FDF2F8;
+  border-radius: 1.5rem;
+  padding: 1.5rem;
+  display: flex;
+  gap: 1.25rem;
+}
+
+.closeIcon {
+  color: #F43F5E;
+  flex-shrink: 0;
+  margin-top: 0.25rem;
+}
+
+/* Meal List */
+.mealList {
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+}
+
+.mealBox {
+  padding: 1.5rem 2rem;
+  border-radius: 1.25rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.mealHeader {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+.mealBox h3 {
+  font-weight: 800;
+  color: #1F2937;
+  font-size: 1.1rem;
+}
+
+.mealBox p {
+  font-size: 0.95rem;
+  color: #4B5563;
+  line-height: 1.5;
+}
+
+.mealColor1 { background-color: #FEFCE8; border-left: 6px solid #FDE047; }
+.mealColor2 { background-color: #FFEDD5; border-left: 6px solid #FB923C; }
+
+/* Footer Box */
+.footerBox {
+  background: white;
+  border: 2px solid #E5E7EB;
+  border-radius: 1.5rem;
+  padding: 2rem;
+  display: flex;
+  gap: 1.5rem;
+  align-items: flex-start;
+}
+
+.footerIcon {
+  background: #7E22CE;
+  color: white;
+  padding: 0.75rem;
+  border-radius: 50%;
+  flex-shrink: 0;
+}
+
+.footerInfo h3 {
+  font-weight: 800;
+  font-size: 1.25rem;
+  margin-bottom: 0.5rem;
+  color: #1F2937;
+}
+
+.footerInfo p {
+  color: #6B7280;
+  line-height: 1.6;
+}
+
+@media (max-width: 900px) {
+  .foodGrid, .calciumGrid {
+    grid-template-columns: 1fr;
+  }
+}

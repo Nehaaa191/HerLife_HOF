@@ -8,6 +8,7 @@ import YoungWomenDashboard from './YoungWomenDashboard';
 import PostpartumDashboard from './PostpartumDashboard';
 import PregnantDashboard from './PregnantDashboard';
 import PreteenDashboard from './PreteenDashboard';
+import MenopauseDashboard from './MenopauseDashboard';
 
 export default function PhaseDashboard({ phase }: { phase: string }) {
   const [name, setName] = useState('');
@@ -37,6 +38,10 @@ export default function PhaseDashboard({ phase }: { phase: string }) {
 
   if (phase === 'pregnant') {
     return <PregnantDashboard userName={name} />;
+  }
+
+  if (phase === 'menopause') {
+    return <MenopauseDashboard userName={name} />;
   }
 
   const phaseTitle = phase.charAt(0).toUpperCase() + phase.slice(1);

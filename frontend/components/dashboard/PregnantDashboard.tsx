@@ -42,7 +42,7 @@ export default function PregnantDashboard({ userName }: { userName?: string }) {
       <nav className={styles.navbar}>
         <div className={styles.logo}>
           <Heart fill="currentColor" color="var(--primary)" size={28} />
-          BumpJourney
+          HerLife
         </div>
         <div className={styles.navLinks}>
           <button className={`${styles.navItem} ${styles.navItemActive}`} onClick={() => {}}>
