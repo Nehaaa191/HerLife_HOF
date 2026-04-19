@@ -13,7 +13,7 @@ import {
   Droplet
 } from 'lucide-react';
 import styles from './MenopauseDashboard.module.css';
-import UserMenu from '../shared/UserMenu';
+import DashboardNavbar from '../shared/DashboardNavbar';
 
 export default function MenopauseDashboard({ userName }: { userName?: string }) {
   const router = useRouter();
@@ -21,30 +21,7 @@ export default function MenopauseDashboard({ userName }: { userName?: string }) 
   return (
     <div className={styles.container}>
       {/* Navigation Bar */}
-      <nav className={styles.navbar}>
-        <div className={styles.logo}>
-          <Heart fill="currentColor" color="#D14D72" size={28} />
-          HerLife
-        </div>
-        <div className={styles.navLinks}>
-          <button className={styles.navItem} onClick={() => router.push('/dashboard/menopause')}>
-            <Home size={20} /> Home
-          </button>
-          <button className={styles.navItem} onClick={() => router.push('/menopause/nutrition')}>
-            <Apple size={20} /> Nutrition
-          </button>
-          <button className={styles.navItem} onClick={() => router.push('/menopause/exercise')}>
-            <Dumbbell size={20} /> Exercise
-          </button>
-          <button className={styles.navItem} onClick={() => router.push('/menopause/mental-health')}>
-            <BrainCircuit size={20} /> Mental Health
-          </button>
-          <button className={styles.navItem} onClick={() => router.push('/menopause/learn')}>
-            <BookOpen size={20} /> Learn
-          </button>
-          <UserMenu />
-        </div>
-      </nav>
+      <DashboardNavbar activeTab="home" />
 
       <main className={styles.content}>
         

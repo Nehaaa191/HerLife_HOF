@@ -12,7 +12,7 @@ import {
   Baby
 } from 'lucide-react';
 import styles from './PregnantDashboard.module.css';
-import UserMenu from '../shared/UserMenu';
+import DashboardNavbar from '../shared/DashboardNavbar';
 
 export default function PregnantDashboard({ userName }: { userName?: string }) {
   const router = useRouter();
@@ -40,30 +40,7 @@ export default function PregnantDashboard({ userName }: { userName?: string }) {
   return (
     <div className={styles.container}>
       {/* Navigation Bar */}
-      <nav className={styles.navbar}>
-        <div className={styles.logo}>
-          <Heart fill="currentColor" color="var(--primary)" size={28} />
-          HerLife
-        </div>
-        <div className={styles.navLinks}>
-          <button className={`${styles.navItem} ${styles.navItemActive}`} onClick={() => {}}>
-            <Home size={20} /> Home
-          </button>
-          <button className={styles.navItem} onClick={() => router.push('/pregnant/nutrition')}>
-            <Apple size={20} /> Nutrition
-          </button>
-          <button className={styles.navItem} onClick={() => router.push('/pregnant/exercise')}>
-            <Dumbbell size={20} /> Exercise
-          </button>
-          <button className={styles.navItem} onClick={() => router.push('/pregnant/learn')}>
-            <BookOpen size={20} /> Learn
-          </button>
-          <button className={styles.navItem} onClick={() => router.push('/pregnant/log')}>
-            <FileText size={20} /> Daily Log
-          </button>
-          <UserMenu />
-        </div>
-      </nav>
+      <DashboardNavbar activeTab="home" />
 
       <main className={styles.content}>
         

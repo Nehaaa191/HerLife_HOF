@@ -3,11 +3,7 @@
 import React from 'react';
 import { useRouter } from 'next/navigation';
 import { 
-  Heart, 
-  Home, 
-  Calendar, 
-  Activity, 
-  BookOpen,
+  Heart,
   Book,
   Video,
   Play,
@@ -15,7 +11,7 @@ import {
   Download
 } from 'lucide-react';
 import styles from './Learn.module.css';
-import UserMenu from '../shared/UserMenu';
+import DashboardNavbar from '../shared/DashboardNavbar';
 
 export default function LearnPage() {
   const router = useRouter();
@@ -55,30 +51,7 @@ export default function LearnPage() {
   return (
     <div className={styles.container}>
       {/* Navigation Bar */}
-      <nav className={styles.navbar}>
-        <div className={styles.logo}>
-          <Heart fill="currentColor" color="var(--primary)" size={28} />
-          HerLife
-        </div>
-        <div className={styles.navLinks}>
-          <button className={styles.navItem} onClick={() => router.push('/dashboard/young_women')}>
-            <Home size={20} /> Home
-          </button>
-          <button className={styles.navItem} onClick={() => router.push('/tracker')}>
-            <Calendar size={20} /> Tracker
-          </button>
-          <button className={styles.navItem} onClick={() => router.push('/wellness')}>
-            <Activity size={20} /> Wellness
-          </button>
-          <button className={styles.navItem} onClick={() => router.push('/pcos')}>
-            <Heart size={20} /> PCOS Support
-          </button>
-          <button className={`${styles.navItem} ${styles.navItemActive}`} onClick={() => {}}>
-            <BookOpen size={20} /> Learn
-          </button>
-          <UserMenu />
-        </div>
-      </nav>
+      <DashboardNavbar activeTab="learn" />
 
       <main className={styles.content}>
         

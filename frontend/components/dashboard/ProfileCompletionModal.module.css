@@ -1,0 +1,133 @@
+.modalOverlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.4);
+  backdrop-filter: blur(8px);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 2000;
+  padding: 1.5rem;
+}
+
+.modalContent {
+  background: white;
+  width: 100%;
+  max-width: 600px;
+  border-radius: 2rem;
+  padding: 2.5rem;
+  max-height: 90vh;
+  overflow-y: auto;
+  position: relative;
+  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.15);
+}
+
+.closeBtn {
+  position: absolute;
+  top: 1.5rem;
+  right: 1.5rem;
+  background: var(--bg-soft);
+  border: none;
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.closeBtn:hover {
+  background: var(--error-soft);
+  color: var(--error);
+}
+
+.modalHeader {
+  margin-bottom: 2rem;
+  text-align: center;
+}
+
+.modalHeader h2 {
+  font-size: 1.75rem;
+  color: var(--foreground);
+  margin-bottom: 0.5rem;
+}
+
+.modalHeader p {
+  color: var(--foreground-muted);
+}
+
+.questionSection {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.questionItem {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.questionText {
+  font-weight: 600;
+  color: var(--foreground);
+  font-size: 1rem;
+}
+
+.optionsGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
+  gap: 0.75rem;
+}
+
+.optionBtn {
+  padding: 0.75rem;
+  border: 1.5px solid var(--border);
+  border-radius: 1rem;
+  background: white;
+  font-size: 0.9rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.optionBtn:hover {
+  border-color: var(--primary-soft);
+  color: var(--primary);
+}
+
+.optionBtnActive {
+  background: var(--primary);
+  color: white;
+  border-color: var(--primary);
+}
+
+.submitBtn {
+  width: 100%;
+  padding: 1rem;
+  background: var(--primary);
+  color: white;
+  border: none;
+  border-radius: 1rem;
+  font-size: 1rem;
+  font-weight: 700;
+  margin-top: 2rem;
+  cursor: pointer;
+  transition: all 0.3s;
+}
+
+.submitBtn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 5px 15px rgba(209, 77, 114, 0.3);
+}
+
+.submitBtn:disabled {
+  background: var(--border);
+  cursor: not-allowed;
+  transform: none;
+}

@@ -57,8 +57,26 @@ export default function PhaseQuestionnaire({ phase }: { phase: string }) {
     }
   };
 
+  const calculateBMI = (h: number, w: number) => {
+    if (!h || !w || h <= 0) return null;
+    const hm = h / 100;
+    return (w / (hm * hm)).toFixed(1);
+  };
+
   const updateAnswer = (qid: string, val: any) => {
-    setAnswers({ ...answers, [qid]: val });
+    const newAnswers = { ...answers, [qid]: val };
+    
+    // Auto-calculate BMI if height and weight are present
+    if (qid === 'height_cm' || qid === 'Weight_kg') {
+      const h = parseFloat(qid === 'height_cm' ? val : answers.height_cm);
+      const w = parseFloat(qid === 'Weight_kg' ? val : answers.Weight_kg);
+      const bmi = calculateBMI(h, w);
+      if (bmi) {
+        newAnswers.bmi = bmi;
+      }
+    }
+    
+    setAnswers(newAnswers);
   };
 
   if (!currentFlow || currentFlow.length === 0) {
@@ -169,13 +187,45 @@ export default function PhaseQuestionnaire({ phase }: { phase: string }) {
 
         {question.type === 'input' && (
           <div className={styles.inputGroup}>
-            <input 
-              type="text" 
-              className={styles.inputField}
-              placeholder="Type here..."
-              value={answers[question.id] || ''}
-              onChange={(e) => updateAnswer(question.id, e.target.value)}
-            />
+            <div className={styles.inputWrapper} style={{position: 'relative', width: '100%'}}>
+              <input 
+                type="number" 
+                className={styles.inputField}
+                placeholder={question.placeholder || "Type here..."}
+                value={answers[question.id] || ''}
+                onChange={(e) => updateAnswer(question.id, e.target.value)}
+              />
+              {question.unit && (
+                <span style={{
+                  position: 'absolute', 
+                  right: '1.5rem', 
+                  top: '50%', 
+                  transform: 'translateY(-50%)',
+                  color: 'var(--foreground-muted)',
+                  fontWeight: 600
+                }}>
+                  {question.unit}
+                </span>
+              )}
+            </div>
+            
+            {answers.bmi && (question.id === 'height_cm' || question.id === 'Weight_kg') && (
+              <motion.div 
+                initial={{ opacity: 0, y: 10 }}
+                animate={{ opacity: 1, y: 0 }}
+                style={{
+                  marginTop: '1rem',
+                  padding: '0.75rem',
+                  backgroundColor: 'var(--bg-soft)',
+                  borderRadius: '1rem',
+                  color: 'var(--primary)',
+                  fontWeight: 700
+                }}
+              >
+                Calculated BMI: {answers.bmi}
+              </motion.div>
+            )}
+
             <button 
               className={styles.nextBtn} 
               onClick={handleNext}

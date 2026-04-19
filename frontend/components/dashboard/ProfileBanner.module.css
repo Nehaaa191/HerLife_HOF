@@ -1,0 +1,81 @@
+.bannerContainer {
+  background: linear-gradient(135deg, #FFF5F7 0%, #FEE2E2 100%);
+  border: 1px solid rgba(209, 77, 114, 0.1);
+  padding: 1.25rem 2rem;
+  border-radius: 1.5rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 2rem;
+  box-shadow: 0 4px 20px rgba(209, 77, 114, 0.05);
+  animation: slideDown 0.5s ease-out;
+}
+
+@keyframes slideDown {
+  from { opacity: 0; transform: translateY(-10px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.bannerContent {
+  display: flex;
+  align-items: center;
+  gap: 1.25rem;
+}
+
+.iconCircle {
+  width: 44px;
+  height: 44px;
+  background: white;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 5px 15px rgba(209, 77, 114, 0.1);
+}
+
+.textGroup h3 {
+  margin: 0;
+  font-size: 1.1rem;
+  font-weight: 700;
+  color: #881337;
+}
+
+.textGroup p {
+  margin: 0.25rem 0 0;
+  font-size: 0.9rem;
+  color: #9F1239;
+  opacity: 0.8;
+}
+
+.completeBtn {
+  background: #E11D48;
+  color: white;
+  border: none;
+  padding: 0.75rem 1.5rem;
+  border-radius: 1rem;
+  font-weight: 700;
+  font-size: 0.9rem;
+  cursor: pointer;
+  transition: all 0.2s;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.completeBtn:hover {
+  background: #BE123C;
+  transform: scale(1.05);
+  box-shadow: 0 4px 12px rgba(225, 29, 72, 0.3);
+}
+
+@media (max-width: 768px) {
+  .bannerContainer {
+    flex-direction: column;
+    gap: 1.25rem;
+    text-align: center;
+    padding: 1.5rem;
+  }
+  .bannerContent {
+    flex-direction: column;
+  }
+}
